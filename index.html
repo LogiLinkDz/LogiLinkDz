@@ -492,9 +492,10 @@ async function gsign(){
  try{
   var dbRole=({company:"company",supplier:"supplier",seeker:"job_seeker",other:"organization"})[GR]||"organization";
   var data=await llAuthFetch("/auth/v1/signup",{email:email,password:p,data:{full_name:g("gn"),role:dbRole,preferred_language:LANG||"ar",wilaya_code:w,commune_code:c}});
-  if(!data.user){throw Error("لم يُرجع Supabase بيانات المستخدم.")}
-  if(data.session){llLocalUser(data.user,GR,g("gn"),email,w,c);localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);land();return}
-  ge.style.color="var(--ok)";ge.innerHTML="تم إنشاء الحساب مبدئياً. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).";
+  if(data.user && data.session){llLocalUser(data.user,GR,g("gn"),email,w,c);localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);land();return}
+  // Supabase may create the user/profile successfully but omit user details when email confirmation is enabled.
+  // Treat a successful HTTP response as a pending-confirmation signup instead of showing a false error.
+  ge.style.color="var(--ok)";ge.textContent="تم إنشاء الحساب أو تسجيله بنجاح. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).";
  }catch(e){ge.style.color="var(--bad)";ge.textContent=llAuthError(e)}
 }
 async function glog(){
@@ -605,10 +606,13 @@ var DICT=`#لوحة|Home
 من أنت؟ اختر نوع حسابك|Who are you? Choose your account type
 الاسم (اسم الشركة أو الاسم الكامل)|Name (company or full name)
 البريد الإلكتروني أو رقم الهاتف|Email or phone number
+البريد الإلكتروني (مطلوب لتأكيد الحساب)|Email address (required to confirm account)
+البريد الإلكتروني|Email address
 تأكيد كلمة المرور|Confirm password
 كلمة المرور:|Password:
 كلمة المرور|Password
 أنشئ الحساب|Create account
+تم إنشاء الحساب أو تسجيله بنجاح. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).|Your account request was accepted. Open your email and click the confirmation link, then return to LogiLink DZ and log in. Check your Spam folder if needed.
 تُدار الحسابات عبر Supabase. يجب تأكيد البريد الإلكتروني قبل تسجيل الدخول. لا تشارك كلمة مرورك مع أي شخص.|Demo: accounts are stored in your browser only. In the real platform, accounts and passwords are managed on a secure server.
 8 خانات فأكثر|8+ characters
 حرف كبير (A-Z)|Uppercase (A-Z)
@@ -1042,6 +1046,9 @@ Create account|Créer un compte
 Who are you? Choose your account type|Qui êtes-vous ? Choisissez votre type de compte
 Name (company or full name)|Nom (entreprise ou nom complet)
 Email or phone number|E-mail ou numéro de téléphone
+Email address (required to confirm account)|Adresse e-mail (nécessaire pour confirmer le compte)
+Email address|Adresse e-mail
+Your account request was accepted. Open your email and click the confirmation link, then return to LogiLink DZ and log in. Check your Spam folder if needed.|Votre demande de création de compte a été acceptée. Ouvrez votre e-mail et cliquez sur le lien de confirmation, puis revenez sur LogiLink DZ pour vous connecter. Vérifiez le dossier Spam si nécessaire.
 Confirm password|Confirmer le mot de passe
 Password:|Mot de passe :
 Password|Mot de passe
