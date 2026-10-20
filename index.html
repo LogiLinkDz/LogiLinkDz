@@ -490,7 +490,8 @@ async function gsign(){
  if(er.length){ge.innerHTML="أكمل: "+er.join(" • ");return}
  ge.style.color="var(--warn)";ge.textContent="جارٍ إنشاء الحساب...";
  try{
-  var data=await llAuthFetch("/auth/v1/signup",{email:email,password:p,data:{full_name:g("gn"),role:GR,preferred_language:LANG||"ar",wilaya_code:w,commune_code:c}});
+  var dbRole=({company:"company",supplier:"supplier",seeker:"job_seeker",other:"organization"})[GR]||"organization";
+  var data=await llAuthFetch("/auth/v1/signup",{email:email,password:p,data:{full_name:g("gn"),role:dbRole,preferred_language:LANG||"ar",wilaya_code:w,commune_code:c}});
   if(!data.user){throw Error("لم يُرجع Supabase بيانات المستخدم.")}
   if(data.session){llLocalUser(data.user,GR,g("gn"),email,w,c);localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);land();return}
   ge.style.color="var(--ok)";ge.innerHTML="تم إنشاء الحساب مبدئياً. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).";
@@ -503,7 +504,7 @@ async function glog(){
  try{
   var data=await llAuthFetch("/auth/v1/token?grant_type=password",{email:email,password:p});
   if(!data.user||!data.session)throw Error("لم يكتمل تسجيل الدخول.");
-  var meta=data.user.user_metadata||{};llLocalUser(data.user,meta.role,meta.full_name,email,meta.wilaya_code,meta.commune_code);
+  var meta=data.user.user_metadata||{};var appRole=({company:"company",supplier:"supplier",job_seeker:"seeker",organization:"other",admin:"other",seeker:"seeker",other:"other"})[meta.role]||"other";llLocalUser(data.user,appRole,meta.full_name,email,meta.wilaya_code,meta.commune_code);
   localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);ge.textContent="";land();
  }catch(e){ge.style.color="var(--bad)";ge.textContent=llAuthError(e)}
 }
