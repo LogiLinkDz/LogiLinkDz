@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LogiLink DZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f8f4;--card:#fff;--tx:#14261c;--mu:#566b5e;--pr:#006233;--nv:#004d29;--bd:#cfe0d4;--ok:#006233;--warn:#b45309;--bad:#d21034;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a12;--card:#14251b;--tx:#e9f3ec;--mu:#9db8a6;--pr:#22a55f;--nv:#8fd6ac;--bd:#25402f;--ok:#4ade80;--warn:#fbbf24;--bad:#ff6b81;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Tahoma,sans-serif;line-height:1.6}
+.w{max-width:780px;margin:0 auto;padding:14px}
+h1{margin:6px 0 0;color:var(--nv);font-size:24px}
+.sub{color:var(--mu);font-size:13px;margin-bottom:12px}
+nav{display:flex;gap:4px;margin-bottom:12px;overflow-x:auto}
+nav button{flex:1 0 auto;padding:9px 11px;white-space:nowrap;font-size:12px!important;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;font-size:13px;cursor:pointer}
+nav button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}
+label{display:block;font-size:13px;color:var(--mu);margin:8px 0 3px}
+select,input,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.r{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.go{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;background:var(--pr);color:#fff;font:inherit;font-weight:bold;cursor:pointer}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--bd);color:var(--mu);margin-inline-end:4px}
+.ok{color:var(--ok);border-color:var(--ok)}.wn{color:var(--warn);border-color:var(--warn)}.bd{color:var(--bad);border-color:var(--bad)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.p{font-weight:bold;color:var(--nv);font-size:18px}
+.mu{color:var(--mu);font-size:13px}
+.ac{padding:7px 12px;border:1px solid var(--pr);background:none;color:var(--pr);border-radius:8px;font:inherit;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.empty{text-align:center;color:var(--mu);padding:24px}
+.note{font-size:12px;color:var(--mu);text-align:center;margin:14px 0}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.k{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
+.k b{display:block;font-size:22px;color:var(--pr)}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--pr)}
+.ln{display:grid;grid-template-columns:3fr 1fr auto;gap:6px;align-items:end;margin-bottom:6px}
+.x{border:0;background:none;color:var(--bad);font-size:20px;cursor:pointer}
+.m{background:var(--bg);border-radius:8px;padding:6px 10px;margin:4px 0;font-size:13px}
+.hd{display:flex;align-items:center;gap:10px}
+.strip{height:5px;border-radius:3px;border:1px solid var(--bd);margin:8px 0;background:linear-gradient(90deg,#006233 0 33.3%,#fff 33.3% 66.6%,#d21034 66.6%)}
+@media print{nav,.noprint,.note,h1,.sub{display:none}}
+body{font-family:Cairo,"Segoe UI",Tahoma,Arial,sans-serif}
+.w{padding-bottom:96px}
+.hero{background:linear-gradient(135deg,#006233,#00863f 60%,#0a9a4c);color:#fff;margin:-14px -14px 16px;padding:18px 16px 12px;border-radius:0 0 26px 26px;box-shadow:0 8px 24px rgba(0,98,51,.25)}
+.hero h1{color:#fff;font-size:26px;margin:0}
+.hero .sub,.hero .mu{color:#d9f2e4}
+.hero .ac{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);color:#fff}
+.hero .strip{margin:12px 0 0;border:0;height:4px}
+.lg{border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.14);color:#fff;border-radius:99px;padding:6px 14px;font:inherit;font-weight:700;cursor:pointer}
+.c{border:0;border-radius:18px;box-shadow:0 2px 12px rgba(0,60,30,.09);padding:16px}
+@media (prefers-color-scheme:dark){.c,.k{box-shadow:0 2px 12px rgba(0,0,0,.4)}}
+select,input,textarea{border-radius:12px;border:1.5px solid var(--bd);padding:12px;font-size:15px}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--pr);box-shadow:0 0 0 3px rgba(0,98,51,.18)}
+.go{border-radius:14px;padding:14px;font-size:16px;background:linear-gradient(135deg,#006233,#0a9a4c);box-shadow:0 6px 16px rgba(0,98,51,.3)}
+.ac{border-radius:99px;padding:8px 16px;font-weight:600}
+.tag{padding:2px 10px;font-size:12px;font-weight:600}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;margin:0;gap:0;background:var(--card);border-top:1px solid var(--bd);box-shadow:0 -4px 16px rgba(0,0,0,.08);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around}
+nav:empty{display:none}
+nav button{border:0;background:none;color:var(--mu);border-radius:14px;padding:6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px!important;min-width:58px}
+nav button i{font-style:normal;font-size:20px;line-height:1.2}
+nav button.on{background:rgba(0,98,51,.13);color:var(--pr);font-weight:700}
+.k{border:0;box-shadow:0 2px 12px rgba(0,60,30,.09);border-radius:18px}
+.k b{font-size:24px}
+.bar i{background:linear-gradient(90deg,#006233,#0a9a4c)}
+.sp{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#006233,#0a9a4c);color:#fff;transition:opacity .5s,visibility .5s}
+.sp.out{opacity:0;visibility:hidden}
+.spi{text-align:center;animation:pop .7s cubic-bezier(.2,.9,.3,1.3) both}
+.spi span{display:block;font-size:56px;line-height:1.2}
+.spi b{font-size:28px;letter-spacing:.5px}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes gl{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+@keyframes tin{from{opacity:0;transform:translate(-50%,16px)}to{opacity:1;transform:translate(-50%,0)}}
+.hero{background-size:200% 200%;animation:gl 14s ease infinite}
+.pg>*{animation:up .45s cubic-bezier(.2,.8,.2,1) both}
+.pg>*:nth-child(2){animation-delay:.06s}.pg>*:nth-child(3){animation-delay:.12s}.pg>*:nth-child(4){animation-delay:.18s}.pg>*:nth-child(5){animation-delay:.24s}.pg>*:nth-child(n+6){animation-delay:.3s}
+.c,.k{transition:transform .2s,box-shadow .2s}
+@media (hover:hover){.c:hover,.k:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,60,30,.16)}}
+.ac,.go,nav button,.lgs button{transition:transform .15s,background .2s,box-shadow .2s,color .2s}
+.ac:active,.go:active,nav button:active{transform:scale(.95)}
+.go:hover{box-shadow:0 8px 22px rgba(0,98,51,.4)}
+nav button.on i{animation:pop .4s both}
+.lgs{display:flex;background:rgba(255,255,255,.16);border-radius:99px;padding:3px}
+.lgs button{border:0;background:none;color:#fff;border-radius:99px;padding:5px 11px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+.lgs button.on{background:#fff;color:#006233}
+.tst{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:#14261c;color:#fff;padding:11px 20px;border-radius:99px;font-weight:600;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:tin .35s both;max-width:90vw;text-align:center}
+.tst.out{opacity:0;transition:opacity .4s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.locbox{border:1px dashed var(--bd);border-radius:12px;padding:10px;margin:8px 0;background:var(--card)}.locbox .mu{margin-bottom:5px}.locbox select{margin-bottom:6px}
+</style>
+</head>
+<body>
+<div id="sp" class="sp"><div class="spi"><span>🇩🇿</span><b>LogiLink DZ</b></div></div>
+<div class="w">
+<header class="hero"><div class="hd"><span id="flag"></span><div style="flex:1"><h1>LogiLink DZ</h1>
+</div><div class="lgs"><button id="lg-ar" onclick="setLang('ar')">ع</button><button id="lg-en" onclick="setLang('en')">EN</button><button id="lg-fr" onclick="setLang('fr')">FR</button></div></div>
+<div class="mu" id="today" style="margin-top:10px"></div><div id="usr" style="margin-top:6px"></div><div class="strip"></div></header>
+<nav id="nav"></nav>
+<div id="v"></div>
+<div class="note">نموذج توضيحي: الموردون والأسعار افتراضية وليست عروضاً حقيقية. البيانات تُحفظ في متصفحك فقط.</div>
+<div class="note" style="margin-top:0"><b>تم إنشاء هذا التطبيق بواسطة أسامة حنكة</b> 🇩🇿</div>
+</div>
+<script>
+// LogiLink DZ geographic selector (Supabase REST)
+var LL_SUPABASE_URL = "https://dnkvtppoitejvqjxccbz.supabase.co";
+var LL_SUPABASE_KEY = "sb_publishable_n1aBiwVszDH71L2LlQbM9A_2vt7igzd";
+var LL_WILAYAS=[], LL_COMMUNES=[], LL_GEO_ERROR="";
+function llGeoLabel(row){return LANG==="fr"?(row.name_fr||row.name_ar):LANG==="en"?(row.name_en||row.name_fr||row.name_ar):(row.name_ar||row.name_fr)}
+async function llLoadGeo(){
+ if(!LL_SUPABASE_KEY || LL_SUPABASE_KEY.indexOf("PASTE_")===0){LL_GEO_ERROR="يلزم إضافة مفتاح Supabase العام في إعدادات الملف لتفعيل القوائم الحقيقية.";return;}
+ try{
+  var headers={"apikey":LL_SUPABASE_KEY,"Authorization":"Bearer "+LL_SUPABASE_KEY};
+  var a=await fetch(LL_SUPABASE_URL+"/rest/v1/wilayas?select=code,name_ar,name_fr,name_en&order=code",{headers:headers});
+  if(!a.ok)throw Error("wilayas HTTP "+a.status); LL_WILAYAS=await a.json();
+  var b=await fetch(LL_SUPABASE_URL+"/rest/v1/communes?select=code,wilaya_code,name_ar,name_fr,name_en&order=name_ar",{headers:headers});
+  if(!b.ok)throw Error("communes HTTP "+b.status); LL_COMMUNES=await b.json(); LL_GEO_ERROR="";
+ }catch(e){LL_GEO_ERROR="تعذر تحميل الولايات والبلديات من Supabase: "+e.message;console.error(e)}
+}
+function llLocationBox(prefix){
+ var ws=LL_WILAYAS.map(function(w){return '<option value="'+esc(w.code)+'">'+esc(llGeoLabel(w))+'</option>'}).join("");
+ return '<div class="locbox"><b>الموقع الجغرافي</b><div class="mu">اختر الولاية ثم البلدية</div><label for="'+prefix+'-wilaya">الولاية</label><select id="'+prefix+'-wilaya" onchange="llUpdateCommunes(\''+prefix+'\')"><option value="">اختر الولاية</option>'+ws+'</select><label for="'+prefix+'-commune">البلدية</label><select id="'+prefix+'-commune" disabled><option value="">اختر الولاية أولاً</option></select>'+(LL_GEO_ERROR?'<div class="mu" style="color:var(--warn)">'+esc(LL_GEO_ERROR)+'</div>':'')+'</div>';
+}
+function llUpdateCommunes(prefix){var w=document.getElementById(prefix+'-wilaya'),c=document.getElementById(prefix+'-commune');if(!w||!c)return;var code=w.value;c.innerHTML='<option value="">اختر البلدية</option>'+LL_COMMUNES.filter(function(x){return x.wilaya_code===code}).map(function(x){return '<option value="'+esc(x.code)+'">'+esc(llGeoLabel(x))+'</option>'}).join('');c.disabled=!code;c.onchange=function(){var row=LL_COMMUNES.filter(function(x){return x.code===c.value})[0];var map={request:'city',supplier:'rc',jobpost:'jc',profile:'pc',signup:'gc'};var legacy=document.getElementById(map[prefix]);if(legacy&&row){legacy.innerHTML='<option value="'+esc(row.name_ar||row.name_fr||'')+'">'+esc(row.name_ar||row.name_fr||'')+'</option>';legacy.value=(row.name_ar||row.name_fr||'');}};}
+var TYPES=["شاحنة قلابة","شاحنة صهريج","حفارة","شفّالة","رافعة","حافلة عمال","سائق / مشغّل","سيارة / مركبة خفيفة","مهندس","فني متخصص","مسؤول سلامة HSE","مشرف / مراقب أشغال","شاحنة مسطحة","شاحنة صندوقية","شاحنة مبرّدة","شاحنة حاويات","رأس جرّار مع مقطورة","شاحنة نقل الآليات (لوبوي)","شاحنة خلاطة إسمنت","شاحنة صهريج مياه","شاحنة صهريج وقود","شاحنة رافعة (هيابّ)","سيارة سحب وإنقاذ","جرافة","مسوّية (غريدر)","حفارة زاحفة","حفارة عجلات","حفّار بجرافة أمامية (JCB)","جرافة مصغّرة (بوبكات)","مدحلة ضاغطة","قلّاب مفصلي (دمبر)","آلة حفر آبار / ثقب","رافعة متنقلة","رافعة برجية","رافعة شوكية","منصة رفع (سلّم هوائي)","سيارة سياحية","سيارة دفع رباعي 4×4","بيك أب","فان / سيارة نفعية","سيارة إسعاف مجهزة","ميني باص (حتى 30 مقعداً)","حافلة كبيرة (45 مقعداً فأكثر)","حافلة مكيّفة VIP","مولّد كهربائي","ضاغط هواء (كمبروسر)","برج إنارة","مضخة (مياه / خرسانة)","كرافان / مسكن متنقل","شاحنة نقل الأنابيب","شاحنة شفط وصرف (فاكيوم)","شاحنة صهريج غاز","شاحنة نقل مواد خطرة","شاحنة ورشة متنقلة","شاحنة سيلو إسمنت سائب","شاحنة إطفاء","فرادة أسفلت","آلة دق الركائز","آلة حفر أفقي (HDD)","رافعة زاحفة","بيك أب دبل كابينة","سيارة أجرة / ليموزين","حافلة 4×4 لنقل العمال","ميني باص 14-16 مقعداً","ماكينة لحام","خزان وقود متنقل"],CITIES=["حاسي مسعود","ورقلة","الوادي"];
+var S0=[
+{n:"مؤسسة الصحراء للنقل",t:TYPES[0],c:CITIES[0],r:4.8,p:18000,d:120},
+{n:"النور للشاحنات",t:TYPES[0],c:CITIES[1],r:4.5,p:16500,d:75},
+{n:"أولاد سايح للنقل",t:TYPES[0],c:CITIES[2],r:4.1,p:15000,d:12},
+{n:"الوادي للصهاريج",t:TYPES[1],c:CITIES[2],r:4.6,p:26000,d:200},
+{n:"سوناريد الخدمات",t:TYPES[1],c:CITIES[0],r:4.7,p:28000,d:90},
+{n:"تيطراوي للآليات",t:TYPES[2],c:CITIES[1],r:4.7,p:45000,d:150},
+{n:"الأفق للأشغال",t:TYPES[2],c:CITIES[0],r:4.2,p:42000,d:20},
+{n:"بن عمر للآليات",t:TYPES[3],c:CITIES[1],r:4.4,p:38000,d:60},
+{n:"الجنوب للرفع",t:TYPES[4],c:CITIES[0],r:4.9,p:65000,d:110},
+{n:"رحاب لنقل العمال",t:TYPES[5],c:CITIES[1],r:4.5,p:22000,d:45},
+{n:"فريق المشغّلين المحترفين",t:TYPES[6],c:CITIES[0],r:4.6,p:9000,d:80},
+{n:"واحة لتأجير السيارات",t:TYPES[7],c:CITIES[1],r:4.4,p:7000,d:100},
+{n:"سائقون الجنوب",t:TYPES[6],c:CITIES[1],r:4.3,p:8500,d:55},
+{n:"ميكانيك الصحراء (سيارات)",t:TYPES[7],c:CITIES[0],r:4.6,p:8000,d:70},
+{n:"م. أيمن – مهندس كهرباء صناعية",t:TYPES[8],c:CITIES[2],r:4.7,p:14000,d:365,m:"كهرباء صناعية – تشغيل وصيانة لوحات ومحطات – PLC"},
+{n:"فني كهرباء وصيانة – رضا",t:TYPES[9],c:CITIES[0],r:4.5,p:7000,d:200,m:"كهرباء – صيانة وتركيب"},
+{n:"لحّام معتمد – سفيان",t:TYPES[9],c:CITIES[1],r:4.4,p:6500,d:90,m:"لحام – شهادة لحام معتمدة"},
+{n:"مسؤول HSE – كريم",t:TYPES[10],c:CITIES[0],r:4.8,p:15000,d:150,m:"سلامة وصحة مهنية – تقييم مخاطر"},
+{n:"مشرف أشغال – وليد",t:TYPES[11],c:CITIES[1],r:4.3,p:12000,d:120,m:"مدني – إشراف ومتابعة مشاريع"}
+];
+S0.forEach(function(s,i){s.y=3+i%9;s.dr=i%2;s.hse=i%3!=2;s.j=4+i*3;s.m=s.m||"بيانات تجريبية"});
+(function(){var have={};S0.forEach(function(s){if(s.d>=120)have[s.t]=1});
+ var IN=function(a,i){return a.indexOf(i)>=0},PR=function(i){return IN([0,1,12,13,14,15,16,17,18,19,20,21,22,49,50,51,52,53,54,55],i)?[16000,30000]:(IN([2,3,23,24,25,26,27,28,29,30,31,56,57,58],i)?[38000,60000]:(IN([4,32,33,34,35,59],i)?[40000,70000]:(IN([7,36,37,38,39,40,60,61],i)?[6000,14000]:(IN([5,41,42,43,62,63],i)?[20000,35000]:[5000,18000]))))};
+ TYPES.forEach(function(t,i){if(isH(t)||have[t])return;var r=PR(i),k;
+  for(k=0;k<2;k++)S0.push({n:"مورد تجريبي – "+t+" ("+(k?"ب":"أ")+")",t:t,c:CITIES[(i+k)%3],r:+(4.1+((i*7+k*3)%8)/10).toFixed(1),p:Math.round((r[0]+(r[1]-r[0])*((i*13+k*29)%10)/10)/500)*500,d:150+((i*17+k*41)%150),y:3+(i+k*4)%10,dr:(i+k)%2,hse:(i+k)%3!=2,j:5+(i*3+k*7)%40,m:"بيانات تجريبية"})})})();
+var ST={R:[],X:[],bk:{},rt:{}};
+try{var q=JSON.parse(localStorage.getItem("ll2")||"null");if(q)ST=q}catch(e){}
+ST.fav=ST.fav||{};ST.dd=ST.dd||{};ST.ch=ST.ch||{};
+S0.forEach(function(s){if(ST.dd[s.n]!=null)s.d=ST.dd[s.n]});
+function save(){try{localStorage.setItem("ll2",JSON.stringify(ST))}catch(e){}}
+var L=[{type:TYPES[0],qty:2}],cur=0,msg="",WD=0,F={t:"",c:"",rd:0,so:"r"},op="",TD=5,TC=CITIES[0],TU=0,SO=null,SOT="",CMP="",SI="",BY="",CK="",CKS=[];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function all(){return S0.concat(ST.X).filter(function(s){return!isH(s.t)})}
+function rate(s){var a=ST.rt[s.n]||[0,0];return +((s.r*10+a[0])/(10+a[1])).toFixed(1)}
+function fmt(n){return n.toLocaleString("en-US")+" دج"}
+function ready(s){return isH(s.t)?s.d>=0:s.d>=MIN}
+function opts(a,s){return a.map(function(x){return'<option value="'+esc(x)+'"'+(x==s?' selected':'')+'>'+x+'</option>'}).join("")}
+function offers(type,qty,city,days,urg,ex,note){
+ var l=all().filter(function(s){return s.t==type&&!ST.bk[s.n]&&ready(s)&&(!WD||s.dr)&&s.n!=ex});
+ l.forEach(function(s){s.sc=(s.c==city?2:0)+(ready(s)?1:0)+rate(s)/5+(ST.fav[s.n]?1.5:0)+(note&&s.m&&s.m.indexOf(note)>=0?3:0)});
+ l.sort(function(a,b){return b.sc-a.sc});
+ return l.slice(0,3).map(function(s){return{n:s.n,c:s.c,k:ready(s),r:rate(s),unit:s.p,f:!!ST.fav[s.n],tot:Math.round(s.p*qty*days*(urg?1.2:1)/1000)*1000}})}
+var NAV=["لوحة","طلب","طلباتي","الموارد","سجّل","حسابي","دردشة","وظائف","خطة التطوير"];
+function go(i){cur=i;msg="";if(window.scrollTo)try{window.scrollTo({top:0,behavior:"smooth"})}catch(e){}draw()}
+function draw(){
+ var U=cu();if(!U){document.getElementById("usr").innerHTML="";document.getElementById("nav").innerHTML="";document.getElementById("v").innerHTML=gate();animV();return}
+ if(TABS[U.role].indexOf(cur)<0)cur=TABS[U.role][0];
+ document.getElementById("usr").innerHTML='<div class="row" style="margin-bottom:8px"><span class="mu"><b>'+esc(U.name)+'</b> · '+RL[U.role]+'</span><button class="ac" onclick="out()">تسجيل الخروج</button></div>';
+ document.getElementById("nav").innerHTML=NAV.map(function(n,i){return TABS[U.role].indexOf(i)<0?'':'<button class="'+(i==cur?"on":"")+'" onclick="go('+i+')"><i>'+IC[i]+'</i>'+n+'</button>'}).join("");
+ document.getElementById("v").innerHTML=[dash,form,reqs,sups,reg,inbox,chat,jobs,roadmap][cur]();animV()}
+function dash(){
+ var tl=0,fl=0,val=0,pend=0,paid=0;
+ ST.R.forEach(function(r){r.lines.forEach(function(l){tl++;if(l.acc>=0){fl++;val+=l.off[l.acc].tot;if((l.pay||0)<2)pend+=l.off[l.acc].tot;else paid+=l.off[l.acc].tot}})});
+ var rd=all().filter(ready).length;
+ return'<div class="g"><div class="k"><b>'+ST.R.length+'</b>طلبات ومشاريع</div><div class="k"><b>'+fl+' / '+tl+'</b>بنود مغطاة</div><div class="k"><b>'+fmt(val)+'</b>قيمة العروض المقبولة</div><div class="k"><b>'+rd+' / '+all().length+'</b>موردون جاهزون للتعبئة</div><div class="k"><b>'+fmt(pend)+'</b>مستحقات قيد الدفع</div><div class="k"><b>'+fmt(paid)+'</b>مدفوع</div></div>'
+ +'<div class="c" style="margin-top:10px"><b>كيف تعمل المنصة؟</b><div class="mu">انشر طلباً (أو مشروعاً بعدة موارد) ← استقبل عروضاً مرتبة بالقرب والتوثيق والتقييم ← اقبل العرض ← تواصل مع المورد ← قيّم بعد الإنجاز.</div></div>'
+ +'<button class="ac" onclick="if(confirm(\'مسح كل البيانات التجريبية؟\')){ST={R:[],X:[],bk:{},rt:{},fav:{},dd:{},ch:{},U:ST.U,S:ST.S,lang:ST.lang};save();go(0)}">إعادة ضبط النموذج</button>'}
+function roadmap(){
+ return '<div class="c"><div class="row"><b style="font-size:19px">خارطة تطوير LogiLink DZ</b><span class="tag">خطة عمل</span></div><p class="mu">هذه الصفحة تجمع الملاحظات والتوصيات لتحويل النموذج التجريبي إلى منصة لوجستية قابلة للاستخدام التجاري. وجود هذه الخطة داخل النموذج لا يعني أن الوظائف الخلفية قد نُفذت.</p><div class="g"><div class="k"><b>9/10</b>قوة الفكرة</div><div class="k"><b>8/10</b>واجهة وتجربة الاستخدام</div><div class="k"><b>2/10</b>جاهزية البيانات الحقيقية</div><div class="k"><b>3/10</b>الجاهزية التجارية والتقنية</div></div></div>'+
+ '<div class="c"><b>1. أهم فجوة: قاعدة بيانات وخادم حقيقي</b><ul><li>نقل الحسابات والطلبات والعروض والمحادثات والتقييمات من localStorage إلى قاعدة بيانات مركزية.</li><li>إنشاء واجهة خلفية (Backend/API) مع صلاحيات على مستوى كل دور وحساب.</li><li>اعتماد تسجيل دخول آمن، وإعادة تعيين كلمة المرور، والتحقق من البريد أو الهاتف، وإدارة الجلسات.</li><li>منع المستخدم من مشاهدة أو تعديل طلبات وعروض ووثائق لا تخصه.</li><li>إضافة نسخ احتياطي، وسجل تدقيق للعمليات، ومراقبة الأخطاء، وسياسة خصوصية وشروط استخدام.</li></ul><div class="mu">اقتراح تقني مبدئي: Supabase أو خادم موثوق مماثل، بعد تحديد متطلبات الاستضافة وحماية البيانات. لا تُدخل بيانات حقيقية أو حساسة في النسخة الحالية.</div></div>'+
+ '<div class="c"><b>2. التحقق من الموردين والوثائق</b><ul><li>إنشاء ملف موثّق للمؤسسة أو المورد يتضمن بيانات التسجيل والنشاط ووسائل الاتصال.</li><li>إرفاق بطاقة الترقيم، والتأمين، والفحص التقني، ورخصة النقل أو النشاط عند انطباقها.</li><li>تسجيل تاريخ انتهاء كل وثيقة وإرسال تنبيهات قبل انتهائها، وإيقاف علامة «موثّق/جاهز» عند انتهاء وثيقة إلزامية.</li><li>إضافة مراجعة إدارية يدوية للوثائق قبل منح شارة التوثيق.</li><li>توضيح أن رفع الملف وحده لا يعني أنه تم التحقق منه قانونياً.</li></ul></div>'+
+ '<div class="c"><b>3. دورة طلب وعرض واضحة</b><ul><li>تحديد حالة الطلب: مسودة، منشور، عروض مستلمة، عرض مقبول، قيد التنفيذ، مكتمل، ملغى أو محل نزاع.</li><li>إظهار السعر والوحدة والمدة وما يشمله السعر: الوقود، السائق، النقل إلى الموقع، الضرائب، ورسوم التعبئة أو الإلغاء.</li><li>تمكين طالب الخدمة من مقارنة العروض حسب السعر والتوفر والمسافة والتوثيق والتقييم، مع توضيح طريقة الترتيب.</li><li>إنشاء أمر خدمة أو عقد مبسط يتضمن نطاق الخدمة والموقع والتواريخ والسعر ومسؤوليات الطرفين.</li><li>إضافة تأكيد بدء الخدمة وإتمامها، ومحضر استلام، وسجل تغييرات، وإمكانية طباعة أمر الخدمة أو تصديره PDF.</li><li>دعم التفاوض وتعديل العرض وقبوله أو رفضه مع الاحتفاظ بتاريخ المراسلات.</li></ul></div>'+
+ '<div class="c"><b>4. الدفع والعمولة ونموذج الإيرادات</b><ul><li>اختيار نموذج تجاري واضح: عمولة على الخدمة المنجزة، أو اشتراك للموردين، أو رسوم على العملاء، أو نموذج مختلط.</li><li>عرض الرسوم والعمولات وشروط الاسترداد والإلغاء قبل تأكيد الحجز.</li><li>إضافة حالات مالية منفصلة: غير مستحق، مستحق، قيد الدفع، مدفوع، مسترد أو محل نزاع.</li><li>عدم الادعاء بأن الدفع الإلكتروني أو الضمان المالي متاح قبل دمج مزود دفع مرخص والتحقق من المتطلبات القانونية في الجزائر.</li><li>في المرحلة التجريبية يمكن توثيق الدفع خارج المنصة مع إيصال وحالة يحدّثها الطرفان، دون تخزين بيانات البطاقات.</li></ul></div>'+
+ '<div class="c"><b>5. الثقة والتقييم وحل النزاعات</b><ul><li>السماح بالتقييم بعد إتمام خدمة مؤكدة فقط، وليس من أي حساب عشوائي.</li><li>فصل تقييم السعر والالتزام بالوقت وحالة المعدات والسلامة والتواصل.</li><li>إضافة الإبلاغ عن عرض مشبوه، وحظر الحساب، ومراجعة الشكاوى من مسؤول المنصة.</li><li>إنشاء مسار نزاع يطلب الأدلة من الطرفين ويسجل القرار والتاريخ.</li><li>إظهار تقييمات موثقة وعدد الخدمات المنجزة، وعدم عرض بيانات تجريبية على أنها سمعة حقيقية.</li></ul></div>'+
+ '<div class="c"><b>6. الإشعارات والمحادثات</b><ul><li>إشعار طالب الخدمة عند وصول عرض أو تغيير حالته، وإشعار المورد عند وجود طلب مناسب أو قرب موعد التعبئة.</li><li>تنبيهات داخل التطبيق، ثم البريد أو SMS أو WhatsApp عبر تكامل رسمي وبموافقة المستخدم.</li><li>حفظ الرسائل في قاعدة البيانات مع الطوابع الزمنية وربطها بالطلب، مع أدوات للإبلاغ عن إساءة الاستخدام.</li><li>إظهار حالة الإشعار وعدم الاعتماد على زر يفتح WhatsApp وحده كأنه نظام إشعارات متكامل.</li></ul></div>'+
+ '<div class="c"><b>7. تحسين البحث وإدارة الأسطول</b><ul><li>بحث وفلاتر حسب الولاية والبلدية والمسافة ونوع الآلية والسعة والتوفر وتاريخ التعبئة.</li><li>ملفات تفصيلية للمعدات: النوع، الماركة، السعة، سنة الصنع، حالة الصيانة، الموقع، الصور والوثائق.</li><li>تقويم للحجوزات لمنع قبول طلبين متعارضين للمعدة نفسها.</li><li>إدارة الصيانة والتوقفات وتواريخ انتهاء الوثائق والتأمين والفحص التقني.</li><li>إظهار وقت الوصول المتوقع وتكلفة نقل المعدة إلى الموقع عندما تتوفر بيانات موثوقة.</li></ul></div>'+
+ '<div class="c"><b>8. تطوير قسم الوظائف</b><ul><li>فصل حساب الباحث عن العمل عن حساب الشركة، مع صلاحيات مناسبة لكل منهما.</li><li>إضافة السيرة الذاتية والخبرات والشهادات والتخصص ومكان الإقامة والتوفر، مع التحكم في خصوصية البيانات.</li><li>تمكين الشركات من نشر الوظائف وفرز الطلبات وتغيير حالة الترشح وإرسال ردود للمتقدمين.</li><li>إضافة الإبلاغ عن الوظائف الوهمية والتحقق من الشركات، وعدم إظهار معلومات الاتصال الخاصة دون موافقة.</li></ul></div>'+
+ '<div class="c"><b>9. خطة إطلاق عملية مقترحة</b><ol><li><b>المرحلة الأولى – اختبار السوق:</b> البدء في محور حاسي مسعود–ورقلة–الوادي، وإجراء مقابلات مع شركات طالبة للخدمة ومورّدين فعليين.</li><li><b>المرحلة الثانية – تجربة محدودة:</b> استقطاب 15–30 مورداً حقيقياً والتحقق من وثائقهم، مع عدد محدود من الشركات وطلبات حقيقية تتم متابعتها يدوياً.</li><li><b>المرحلة الثالثة – النسخة التشغيلية:</b> بناء قاعدة البيانات وتسجيل الدخول والصلاحيات وسير الطلبات والعروض والوثائق والإشعارات.</li><li><b>المرحلة الرابعة – المعاملات:</b> أوامر الخدمة والعقود والتقييمات بعد الإنجاز وحل النزاعات ونموذج العمولة أو الاشتراك.</li><li><b>المرحلة الخامسة – التوسع:</b> إضافة ولايات وفئات معدات جديدة بناءً على الطلب الفعلي وقياس جودة الخدمة.</li></ol></div>'+
+ '<div class="c"><b>10. مؤشرات يجب قياسها</b><ul><li>عدد الموردين الموثقين والنشطين، لا مجرد عدد الحسابات.</li><li>متوسط الوقت للحصول على أول عرض، ونسبة الطلبات التي تحصل على عرض.</li><li>نسبة العروض المقبولة والخدمات المنجزة والطلبات الملغاة.</li><li>نسبة الالتزام بالموعد، والشكاوى، وحالات انتهاء الوثائق.</li><li>متوسط قيمة الخدمة، وتكلفة اكتساب العميل، والإيراد الصافي للمنصة.</li></ul></div>'+
+ '<div class="c"><b>11. ملاحظات مهمة على النسخة الحالية</b><ul><li>أسماء الموردين والأسعار والتقييمات المعروضة حالياً تجريبية وليست عروضاً حقيقية.</li><li>تخزين البيانات في المتصفح يعني أنها قد تختفي عند مسح بيانات المتصفح، ولا تتم مزامنتها بين الأجهزة أو المستخدمين.</li><li>الحسابات المخزنة محلياً ليست نظام مصادقة آمناً، ولا تصلح لحماية معلومات تجارية أو شخصية حقيقية.</li><li>قبول عرض أو تغيير تقييم في النموذج لا يثبت وجود عقد أو عملية دفع فعلية.</li><li>هذه الصفحة توثق المتطلبات والتوصيات؛ تنفيذ قاعدة بيانات وخادم آمن وإشعارات ودفع حقيقي يحتاج تطويراً واختبارات مستقلة.</li></ul></div>'+
+ '<div class="c"><b>التوصية النهائية</b><p>الأفضل أن تنطلق LogiLink DZ كمنصة وسيطة متخصصة تربط الشركات التي لديها احتياج لوجستي بالموردين الذين يملكون الشاحنات والمعدات والخدمات. ابدأ بفئات محددة ومنطقة جغرافية محددة، وركّز على التحقق من الموردين وجودة تنفيذ الطلب قبل التوسع. ويمكن أن تتطور لاحقاً إلى نموذج هجين يجمع بين المنصة الرقمية وخدمة تنسيق لوجستي بشرية.</p></div>';
+}
+function lines(){return L.map(function(x,i){return'<div class="ln"><div><label>المورد المطلوب</label><select onchange="L['+i+'].type=this.value">'+gopts(x.type)+'</select></div><div><label>الكمية</label><input type="number" min="1" value="'+x.qty+'" oninput="L['+i+'].qty=Math.max(1,+this.value||1)"></div>'+(L.length>1?'<button class="x" onclick="L.splice('+i+',1);document.getElementById(\'ls\').innerHTML=lines()">×</button>':'<span></span>')+'<div style="grid-column:1/-1"><input placeholder="التخصص / تفاصيل مطلوبة (اختياري) مثل: كهرباء صناعية" value="'+esc(x.note||"")+'" oninput="L['+i+'].note=this.value"></div></div>'}).join("")}
+function form(){
+ return'<div class="c"><b>اطلب بسرعة</b><div class="mu">اختر قالباً جاهزاً أو اكتب طلبك بكلامك:</div><div class="row" style="justify-content:flex-start;margin:6px 0">'+TP.map(function(t,i){return'<button class="ac" onclick="tpl('+i+')">'+t.n+'</button>'}).join("")+(ST.R.length?'<button class="ac" onclick="rep()">↻ أعد آخر طلب</button>':'')+'</div><div class="row" style="flex-wrap:nowrap"><input id="nl" placeholder="مثال: أحتاج 3 حفارات و5 شاحنات قلابة في ورقلة لأسبوعين"><button class="ac" onclick="nlp()">حلّل</button></div>'+(msg?'<div class="mu" style="margin-top:6px;color:var(--ok)">'+msg+'</div>':'')+'</div><div class="c"><div id="ls">'+lines()+'</div><button class="ac" onclick="L.push({type:TYPES[0],qty:1});document.getElementById(\'ls\').innerHTML=lines()">+ إضافة مورد آخر (مشروع متعدد الموارد)</button>'
+ +llLocationBox('request')+'<div class="r"><div><label>المدة (أيام)</label><input id="days" type="number" min="1" value="'+TD+'"></div><div style="display:none"><label>المدينة</label><select id="city">'+opts(CITIES,TC)+'</select></div></div>'
+ +'<label><input id="urg" type="checkbox" '+(TU?'checked ':'')+'style="width:auto;margin-inline-end:6px">طلب عاجل (خلال 24 ساعة، رسم إضافي 20%)</label>'
+ +'<label><input id="wd" type="checkbox" style="width:auto;margin-inline-end:6px">أريد موردين يوفّرون سائقاً/مشغّلاً فقط</label>'
+ +'<label>أطلب بصفتي</label><select id="by"><option>شركة / طالب خدمة</option>'+all().map(function(x){return'<option'+(x.n==BY?' selected':'')+'>'+esc(x.n)+'</option>'}).join("")+'</select><div class="mu">إن كنت مورداً وتحتاج سائقاً أو آلية أو سيارة من موردين آخرين، اختر اسمك هنا.</div>'
+ +'<button class="go" onclick="post()">انشر واستقبل العروض</button></div>'}
+function post(){
+ var days=Math.max(1,+document.getElementById("days").value||1),city=document.getElementById("city").value,urg=document.getElementById("urg").checked;
+ WD=document.getElementById("wd").checked;
+ var by=document.getElementById("by").selectedIndex?document.getElementById("by").value:"";
+ ST.R.unshift({id:Date.now(),by:by,city:city,days:days,urg:urg,msgs:[],lines:L.map(function(x){return{type:x.type,qty:x.qty,acc:-1,done:0,note:x.note||"",off:offers(x.type,x.qty,city,days,urg,by,x.note)}})});
+ L=[{type:TYPES[0],qty:2}];TD=5;TU=0;BY="";save();toast("تم نشر طلبك ✓");go(2)}
+function acc(ri,li,oi){var l=ST.R[ri].lines[li];l.acc=oi;ST.bk[l.off[oi].n]=1;save();toast("تم قبول العرض ✓");draw()}
+function fin(ri,li){var l=ST.R[ri].lines[li],s=+document.getElementById("st"+ri+li).value,n=l.off[l.acc].n,a=ST.rt[n]||[0,0];
+ ST.rt[n]=[a[0]+s,a[1]+1];ST.bk[n]=0;l.done=s;l.st=3;save();draw()}
+function send(ri){var i=document.getElementById("m"+ri),t=i.value.trim();if(t){ST.R[ri].msgs.push(t);save();draw()}}
+function reqs(){return ordc()+reqs0()}
+function reqs0(){
+ if(!ST.R.length)return'<div class="c empty">لا توجد طلبات بعد. انشر طلبك الأول من تبويب «طلب».</div>';
+ return ST.R.map(function(r,ri){
+  var f=r.lines.filter(function(l){return l.acc>=0}).length,tot=r.lines.length,
+  txt='طلب عبر LogiLink DZ: '+r.lines.map(function(l){return l.qty+' × '+l.type}).join("، ")+' – '+r.days+' أيام – '+r.city;
+  return'<div class="c" style="border-color:var(--pr)"><div class="row"><b>'+(tot>1?'مشروع':'طلب')+' – '+esc(r.city)+' – '+r.days+' أيام</b>'+(r.by?'<span class="tag">من: '+esc(r.by)+'</span>':'')+(r.urg?'<span class="tag wn">عاجل</span>':'')+'</div>'
+  +'<div class="mu">تمت تغطية '+f+' من '+tot+' بنود</div><div class="bar"><i style="width:'+(f/tot*100)+'%"></i></div>'
+  +r.lines.map(function(l,li){
+   var mn=Math.min.apply(0,l.off.map(function(x){return x.tot})),bi=best(l,r.city,mn);
+   return'<div style="margin-top:10px"><b>'+l.qty+' × '+l.type+(l.note?' ('+esc(l.note)+')':'')+'</b> '+(l.off.length>1?'<button class="ac" onclick="cm('+ri+','+li+')">مقارنة</button>':'')+(CMP==ri+'-'+li?cmpT(l,r):'')+(l.off.length?'':'<div class="mu">لا يوجد مورد متاح حالياً لهذا النوع.</div>')
+   +l.off.map(function(o,oi){
+    return'<div class="c" style="margin:6px 0"><div class="row"><b>'+esc(o.n)+'</b><span class="p">'+fmt(o.tot)+'</span></div><div class="mu">'+esc(o.c)+' · تقييم '+o.r+' · '+fmt(o.unit)+' / يوم · ~'+dist(o.c,r.city)+' كم (≈ '+eta(dist(o.c,r.city))+' ساعة)</div><button class="ac" style="margin:4px 0" onclick="oc(\''+r.id+'\',\''+esc(o.n)+'\')">💬 دردشة مع المورد</button>'
+    +'<div class="row" style="margin-top:6px"><div>'+(o.k?'<span class="tag ok">جاهز للتعبئة</span>':'<span class="tag wn">وثائق تنتهي قريباً</span>')+(o.tot==mn?'<span class="tag ok">الأقل سعراً</span>':'')+(oi==bi&&l.off.length>1?'<span class="tag ok">★ الأفضل لك</span>':'')+(o.f?'<span class="tag ok">★ مفضّل</span>':'')+'</div>'
+    +(l.acc==oi?'<span class="tag ok">تم القبول ✓</span><button class="ac" onclick="SO=['+ri+','+li+'];draw()">أمر الخدمة</button>':(l.acc<0?'<button class="ac" onclick="acc('+ri+','+li+','+oi+')">اقبل العرض</button>':''))+'</div>'
+    +(l.acc==oi?'<div class="mu" style="margin-top:6px">للتواصل مع المورد: '+contact(o.n)+'</div>'+stp(l,ri,li,r,o):'')+(l.acc==oi&&!l.done?'<div class="row" style="margin-top:8px"><span class="mu">بعد الإنجاز قيّم المورد:</span><select id="st'+ri+li+'" style="width:auto"><option value="5">5 ★</option><option value="4">4 ★</option><option value="3">3 ★</option><option value="2">2 ★</option><option value="1">1 ★</option></select><button class="ac" onclick="fin('+ri+','+li+')">تم الإنجاز</button></div>':'')
+    +(l.acc==oi&&l.done?'<div class="mu" style="margin-top:6px">أُنجزت الخدمة، وتقييمك: '+l.done+' ★</div>':'')+'</div>'}).join("")+'</div>'}).join("")
+  +'<div style="margin-top:10px">'
+  +''
+  +'<a class="ac" style="margin-top:8px" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(txt)+'">مشاركة عبر واتساب</a></div></div>'}).join("")}
+function contact(n){var s=all().filter(function(x){return x.n==n})[0];return s&&s.ph?esc(s.ph):"0555 00 00 00 (رقم تجريبي)"}
+function hs(n){var h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);return h}
+function cal(s){var o='';for(var i=0;i<14;i++){var b=ST.bk[s.n]&&i<5||(hs(s.n)+i)%6==0;o+='<span style="display:inline-block;width:20px;height:20px;border-radius:4px;margin:1px;opacity:.85;background:var(--'+(b?'bad':'ok')+')"></span>'}return o}
+function sel(k,a){return'<select onchange="F.'+k+'=this.value;draw()"><option value="">الكل</option>'+a.map(function(x){return'<option value="'+esc(x)+'"'+(F[k]==x?' selected':'')+'>'+x+'</option>'}).join("")+'</select>'}
+function own(n){ST.X=ST.X.filter(function(x){return x.n!=n});save();draw()}
+function sups(){
+ var l=all().filter(function(s){return(!F.t||s.t==F.t)&&(!F.c||s.c==F.c)&&(!F.rd||ready(s))});
+ l.sort(function(a,b){return F.so=="p"?a.p-b.p:rate(b)-rate(a)});
+ return'<div class="c"><div class="r"><div><label>النوع</label>'+gsel()+'</div><div><label>الموقع</label><div class="mu">اختر الولاية والبلدية عند تسجيل المورد</div></div></div>'
+ +'<div class="r"><div><label>الترتيب</label><select onchange="F.so=this.value;draw()"><option value="r"'+(F.so=="r"?' selected':'')+'>الأعلى تقييماً</option><option value="p"'+(F.so=="p"?' selected':'')+'>الأقل سعراً</option></select></div>'
+ +'<label style="align-self:end"><input type="checkbox" style="width:auto;margin-inline-end:6px" '+(F.rd?'checked ':'')+'onchange="F.rd=this.checked;draw()">الجاهزون للتعبئة فقط</label></div><div class="mu" style="margin-top:6px">'+l.length+' مورد</div></div>'
+ +(l.length?l.map(function(s){
+  var d=s.d,dt=d<0?'<span class="tag bd">وثائق منتهية</span>':(d<MIN&&!isH(s.t)?'<span class="tag wn">لا يفي بشرط 4 أشهر – متبقٍ '+d+' يوماً</span>':'<span class="tag ok">'+(isH(s.t)?'ملف موثّق':'جاهز للتعبئة')+'</span>'),o=op==s.n;
+  return'<div class="c"><div class="row"><b>'+esc(s.n)+'</b><span class="mu">'+s.t+'</span></div><div class="mu">'+esc(s.c)+' · تقييم '+rate(s)+' · '+fmt(s.p)+' / يوم</div>'
+  +'<div class="row" style="margin-top:6px"><div>'+dt+(ST.bk[s.n]?'<span class="tag wn">محجوز</span>':'<span class="tag ok">متاح</span>')+(s.hse?'<span class="tag ok">شهادة سلامة HSE</span>':'')+(ST.fav[s.n]?'<span class="tag ok">★ مفضّل</span>':'')+'</div><button class="ac" onclick="op=op==\''+esc(s.n)+'\'?\'\':\''+esc(s.n)+'\';draw()">'+(o?'إخفاء':'التفاصيل')+'</button></div>'
+  +(o?'<div style="margin-top:10px;font-size:14px"><div>'+(isH(s.t)?'التخصص والشهادات':'المواصفات')+': '+esc(s.m||"—")+'</div><div>الخبرة: '+s.y+' سنوات · أعمال منجزة: '+s.j+'</div>'+xt(s)+(isH(s.t)?'':'<div>التشغيل: '+(s.dr?'مع سائق/مشغّل':'بدون سائق')+'</div>')+''
+   +'<div class="mu" style="margin-top:6px">التوفر خلال 14 يوماً (أخضر متاح، أحمر محجوز – بيانات تجريبية):</div><div>'+cal(s)+'</div><button class="ac" style="margin-top:8px" onclick="fv(\''+esc(s.n)+'\')">'+(ST.fav[s.n]?'إزالة من المفضلة':'أضف إلى المفضلة (يُدعى أولاً ويُقدَّم في الترتيب)')+'</button>'
+   +(!s.own?'<button class="ac" style="margin-top:8px" onclick="oc(\'gen\',\''+esc(s.n)+'\')">💬 راسل المورد</button>':'')+(s.own?'<div class="row" style="margin-top:8px"><button class="ac" onclick="ST.bk[\''+esc(s.n)+'\']=!ST.bk[\''+esc(s.n)+'\'];save();draw()">تبديل التوفر</button><button class="ac" style="color:var(--bad);border-color:var(--bad)" onclick="own(\''+esc(s.n)+'\')">حذف</button></div>':'')+'</div>':'')+'</div>'}).join(""):'<div class="c empty">لا يوجد مورد مطابق.</div>')}
+function reg(){
+ return'<div class="c"><b>سجّل كمورد معدات أو نقل</b><div class="mu">للبحث عن عمل افتح تبويب «وظائف» ثم «ملفي».</div><div class="mu">'+(RM?'مهندس أو فني أو سائق أو مسؤول سلامة؟ أنشئ ملفك ليجدك المقاولون والموردون.':'أضف شاحنتك أو آليتك لتصلك الطلبات.')+'</div>'
+ +'<label>'+(RM?'الاسم الكامل':'اسم المورد / المؤسسة')+'</label><input id="rn" value="'+esc(cu()?cu().name:"")+'"><label>'+(RM?'المهنة':'النوع')+'</label><select id="rt" onchange="RT=this.value;document.getElementById(\'docs\').innerHTML=docsHtml()">'+(RM?opts(HT,RT):gopts(RT))+'</select>'
+ +llLocationBox('supplier')+'<div class="r"><div style="display:none"><label>المدينة</label><select id="rc">'+opts(CITIES)+'</select></div><div><label>'+(RM?'الأجر اليومي المتوقع (دج)':'السعر اليومي (دج)')+'</label><input id="rp" type="number" min="1"></div></div>'
+ +'<label>'+(RM?'التخصص والشهادات (مثال: مهندس كهرباء صناعية – ماستر – PLC)':'الموديل / السعة / المواصفات')+'</label><input id="rm">'
+ +'<div class="r"><div><label>سنوات الخبرة</label><input id="ry" type="number" min="0" value="1"></div>'+(RM?'<div></div>':'<div><label>التشغيل</label><select id="rw"><option value="1">مع سائق/مشغّل</option><option value="0">بدون سائق</option></select></div>')+'</div>'
+ +'<label>رقم الهاتف (يظهر للشركة بعد قبول العرض فقط)</label><input id="rph" type="tel">'
+ +'<label><input id="rh" type="checkbox" style="width:auto;margin-inline-end:6px">أملك شهادة سلامة HSE سارية</label>'
+ +''+(RM?'<label>تاريخ انتهاء أقرب شهادة (اختياري)</label><input id="rd" type="date">':'')+'<div id="docs">'+docsHtml()+'</div>'
+ +'<div id="rmsg" class="mu" style="color:var(--bad);margin-top:6px"></div><button class="go" onclick="add()">سجّل</button></div>'}
+
+var TP=[{n:"10 شاحنات – أسبوع",l:[{type:TYPES[0],qty:10}],d:7},{n:"حفارتان – 10 أيام",l:[{type:TYPES[2],qty:2}],d:10},{n:"رافعة – 3 أيام",l:[{type:TYPES[4],qty:1}],d:3},{n:"حافلتا عمال – شهر",l:[{type:TYPES[5],qty:2}],d:30},{n:"مشروع كامل",l:[{type:TYPES[0],qty:5},{type:TYPES[2],qty:2},{type:TYPES[3],qty:1},{type:TYPES[7],qty:3}],d:14}];
+function tpl(i){var t=TP[i];L=t.l.map(function(x){return{type:x.type,qty:x.qty}});TD=t.d;msg="";draw()}
+function rep(){var r=ST.R[0];L=r.lines.map(function(l){return{type:l.type,qty:l.qty}});TD=r.days;TC=r.city;TU=r.urg?1:0;msg="تم تحميل آخر طلب – عدّله أو انشره مباشرة.";draw()}
+function nlp(){
+ var t=document.getElementById("nl").value.replace(/[٠-٩]/g,function(c){return c.charCodeAt(0)-1632});
+ if(!t.trim())return;
+ var K=[["مسطح",12],["مبرد",14],["حاويات",15],["خلاط",18],["جراف",23],["غريدر",24],["مدحل",29],["شوكي",34],["برجي",33],["ميني باص",41],["بيك أب",38],["رباعي",37],["قلاب",0],["صهريج",1],["حفار",2],["شفال",3],["رافع",4],["حافل",5],["سائق",6],["مشغ",6],["شاحن",0],["سيار",7],["مركب",7],["مهندس",8],["فني",9],["كهربائي",9],["لحام",9],["سلامة",10],["مسؤول",10],["مشرف",11],["مراقب",11]],W={"واحد":1,"اثنين":2,"ثلاث":3,"أربع":4,"خمس":5,"عشر":10},out=[];
+ t.split(/[،,]| و(?=[0-9])| و /).forEach(function(c){
+  var ty=-1;K.forEach(function(k){if(ty<0&&c.indexOf(k[0])>=0)ty=k[1]});if(ty<0||isH(TYPES[ty]))return;
+  var c2=c.replace(/[0-9]+ *(?:يوم|أيام|ايام|أسبوع|اسبوع|شهر)/,""),m=c2.match(/[0-9]+/),q=m?+m[0]:0;
+  if(!q)for(var w in W)if(!q&&c2.indexOf(w)>=0)q=W[w];
+  if(!q)q=/تين/.test(c2)?2:1;
+  out.push({type:TYPES[ty],qty:q,note:c.indexOf("كهرب")>=0?"كهرباء":""})});
+ if(!out.length){msg="لم أفهم نوع المورد. جرّب: «3 حفارات و5 شاحنات قلابة في ورقلة لأسبوعين».";draw();return}
+ var d=t.match(/([0-9]+) *(?:يوم|أيام|ايام)/);
+ TD=d?+d[1]:(/اسبوعين|أسبوعين/.test(t)?14:(/أسبوع|اسبوع/.test(t)?7:(/شهر/.test(t)?30:TD)));
+ if(t.indexOf("حاسي")>=0)TC=CITIES[0];else if(t.indexOf("ورقلة")>=0)TC=CITIES[1];else if(t.indexOf("وادي")>=0)TC=CITIES[2];
+ TU=/عاجل|مستعجل/.test(t)?1:0;L=out;
+ msg="فهمت: "+out.map(function(x){return x.qty+" × "+x.type}).join("، ")+" – "+TD+" يوماً – "+TC+". راجعها ثم انشر.";draw()}
+var DS={"حاسي مسعود|ورقلة":80,"ورقلة|الوادي":250,"حاسي مسعود|الوادي":300};
+function dist(a,b){return a==b?20:(DS[a+"|"+b]||DS[b+"|"+a]||100)}
+function eta(k){return Math.max(1,Math.round(k/60))}
+function best(l,city,mn){var b=-1,bs=-1;l.off.forEach(function(o,i){var s=(o.k?30:0)+o.r*10+(o.c==city?15:0)+(o.f?8:0)+mn/o.tot*30;if(s>bs){bs=s;b=i}});return b}
+function cm(ri,li){var k=ri+"-"+li;CMP=CMP==k?"":k;draw()}
+function cmpT(l,r){var cs="border:1px solid var(--bd);padding:4px;text-align:center";return'<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;margin:6px 0"><tr>'+["المورد","السعر","المسافة","التقييم","الوثائق"].map(function(h){return'<th style="'+cs+'">'+h+'</th>'}).join("")+'</tr>'+l.off.map(function(o){return'<tr>'+[esc(o.n),fmt(o.tot),dist(o.c,r.city)+" كم",o.r,o.k?"✓ جاهز":"⚠ تنتهي قريباً"].map(function(x){return'<td style="'+cs+'">'+x+'</td>'}).join("")+'</tr>'}).join("")+'</table></div>'}
+function fv(n){ST.fav[n]=!ST.fav[n];save();draw()}
+function stp(l,ri,li,r,o){var st=l.st||0,N=["تم القبول","في الطريق","بدأ التنفيذ","أُنجز"],P=["بانتظار الفاتورة","فاتورة صادرة – تستحق خلال 30 يوماً","مدفوع ✓"],p=l.pay||0,
+ h='<div class="row" style="margin-top:8px;justify-content:flex-start">'+N.map(function(x,i){return'<span class="tag '+(i<=st?'ok':'')+'">'+x+'</span>'}).join("")+'</div>';
+ if(st==1)h+='<div class="mu">الوصول المتوقع: ≈ '+eta(dist(o.c,r.city))+' ساعة</div>';
+ if(st<2)h+='<button class="ac" style="margin-top:6px" onclick="adv('+ri+','+li+')">تحديث الحالة ←</button>';
+ h+='<div class="row" style="margin-top:6px"><span class="tag '+(p==2?'ok':'wn')+'">الدفع: '+P[p]+'</span>'+(p<2?'<button class="ac" onclick="pay('+ri+','+li+')">تحديث الدفع</button>':'')+'</div>';return h}
+function adv(ri,li){var l=ST.R[ri].lines[li];l.st=(l.st||0)+1;save();draw()}
+function pay(ri,li){var l=ST.R[ri].lines[li];l.pay=(l.pay||0)+1;save();draw()}
+function ordc(){
+ if(!SO)return'';var r=ST.R[SO[0]],l=r&&r.lines[SO[1]];if(!l||l.acc<0){SO=null;return''}
+ var o=l.off[l.acc];
+ SOT=["أمر خدمة رقم LL-"+String(r.id).slice(-6),"المورد: "+o.n,"الخدمة: "+l.qty+" × "+l.type,"الموقع: "+r.city,"المدة: "+r.days+" أيام","القيمة: "+fmt(o.tot),"الدفع: خلال 30 يوماً من تاريخ الفاتورة","التاريخ: "+new Date().toLocaleDateString("ar-DZ")].join(String.fromCharCode(10));
+ return'<div class="c" style="border-color:var(--ok)"><b>أمر الخدمة</b><pre style="white-space:pre-wrap;font:inherit;font-size:14px;margin:8px 0">'+esc(SOT)+'</pre><div class="row noprint"><a class="ac" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(SOT)+'">واتساب</a><button class="ac" onclick="try{navigator.clipboard.writeText(SOT)}catch(e){}">نسخ</button><button class="ac" onclick="try{window.print()}catch(e){}">طباعة / PDF</button><button class="ac" onclick="SO=null;draw()">إغلاق</button></div></div>'}
+function inbox(){
+ var A=all();if(!SI)SI=(ST.X[0]||A[0]).n;
+ var s=A.filter(function(x){return x.n==SI})[0]||A[0],d=s.d;
+ var o='<div class="c"><label>حسابك (مورد أو كفاءة)</label><select onchange="SI=this.value;draw()">'+A.map(function(x){return'<option'+(x.n==SI?' selected':'')+'>'+esc(x.n)+'</option>'}).join("")+'</select>'
+ +(d<MIN&&!isH(s.t)?'<div class="mu" style="color:var(--bad);margin-top:6px">'+(d<0?'وثائقك منتهية':'متبقٍ على أقرب وثيقة '+d+' يوماً، أقل من 4 أشهر')+' – جدّدها للحفاظ على شارة الجاهزية.</div><div class="row" style="flex-wrap:nowrap;margin-top:6px"><input id="ud" type="date"><button class="ac" onclick="upd()">تحديث</button></div>':'<div class="mu" style="margin-top:6px">وثائقك سارية ✓</div>')
+ +'<button class="ac" style="margin-top:8px" onclick="ST.bk[SI]=!ST.bk[SI];save();draw()">'+(ST.bk[SI]?'أنا محجوز الآن – اضغط لأصبح متاحاً':'أنا متاح الآن ✓ – اضغط لأصبح غير متاح')+'</button> <button class="ac" style="margin-top:8px" onclick="BY=SI;go(1)">+ أحتاج سائقاً أو آلية أو سيارة</button></div>',n=0;
+ ST.R.forEach(function(r,ri){r.lines.forEach(function(l,li){
+  if(l.type!=s.t||l.acc>=0||r.by==s.n)return;n++;
+  var has=l.off.some(function(x){return x.n==s.n}),tot=Math.round(s.p*l.qty*r.days*(r.urg?1.2:1)/1000)*1000;
+  o+='<div class="c"><b>طلب جديد: '+l.qty+' × '+l.type+'</b>'+(r.by?'<span class="tag">من: '+esc(r.by)+'</span>':'')+(r.urg?'<span class="tag wn">عاجل</span>':'')+'<div class="mu">'+esc(r.city)+' · '+r.days+' أيام</div><div class="m">إشعار واتساب: «طلب جديد في '+esc(r.city)+': '+l.qty+' × '+l.type+' لمدة '+r.days+' أيام. هل أنت متاح؟»</div>'
+  +'<div><button class="ac" style="margin:4px 0" onclick="oc(\''+r.id+'\',\''+esc(s.n)+'\')">💬 دردشة مع الطالب</button></div>'+(has?'<span class="tag ok">قدّمت عرضك ✓</span>':'<div class="row"><span class="p">'+fmt(tot)+'</span><button class="ac" onclick="bid('+ri+','+li+')">قدّم عرضي بسعري</button></div>')+'</div>'})});
+ if(!n)o+='<div class="c empty">لا توجد طلبات مفتوحة لنوعك الآن. انشر طلباً من تبويب «طلب» لتظهر هنا.</div>';
+ return o}
+function bid(ri,li){var r=ST.R[ri],l=r.lines[li],s=all().filter(function(x){return x.n==SI})[0];
+ l.off.push({n:s.n,c:s.c,k:ready(s),r:rate(s),unit:s.p,f:!!ST.fav[s.n],tot:Math.round(s.p*l.qty*r.days*(r.urg?1.2:1)/1000)*1000});save();draw()}
+function upd(){var v=document.getElementById("ud").value;if(!v)return;var s=all().filter(function(x){return x.n==SI})[0];s.d=Math.ceil((new Date(v)-Date.now())/864e5);ST.dd[s.n]=s.d;save();draw()}
+function oc(rid,sn){CK=rid+"|"+sn;cur=6;msg="";draw()}
+function chat(){
+ if(CK)return thr();
+ CKS=Object.keys(ST.ch).reverse();
+ if(!CKS.length)return'<div class="c empty">لا توجد محادثات بعد. افتح دردشة من أي عرض، أو من ملف مورد (راسل المورد).</div>';
+ return CKS.map(function(k,i){var m=ST.ch[k],p=k.split("|"),l=m[m.length-1];
+  return'<div class="c"><div class="row"><b>'+esc(p[1])+'</b><button class="ac" onclick="CK=CKS['+i+'];draw()">فتح</button></div><div class="mu">'+(p[0]=="gen"?'محادثة عامة':'بخصوص طلب')+' · '+esc(l.t.slice(0,60))+'</div></div>'}).join("")}
+function thr(){
+ var p=CK.split("|"),r=p[0]=="gen"?null:ST.R.filter(function(x){return String(x.id)==p[0]})[0],m=ST.ch[CK]||[];
+ var t=r?'بخصوص: '+r.lines.map(function(l){return l.qty+' × '+l.type}).join("، ")+' – '+esc(r.city)+(r.by?' (من: '+esc(r.by)+')':''):'محادثة عامة قبل الطلب';
+ return'<div class="c"><div class="row"><b>'+esc(p[1])+'</b><button class="ac" onclick="CK=\'\';draw()">← المحادثات</button></div><div class="mu">'+t+'</div></div>'
+ +'<div class="c" style="display:flex;flex-direction:column;gap:6px;min-height:120px">'+(m.length?m.map(function(x){return'<div class="m" style="max-width:85%;align-self:'+(x.f=="me"?'flex-start;background:var(--pr);color:#fff':'flex-end')+'">'+esc(x.t)+'</div>'}).join(""):'<div class="mu">ابدأ بسؤال سريع من الأزرار أدناه أو اكتب رسالتك.</div>')+'</div>'
+ +'<div class="row" style="justify-content:flex-start;margin-bottom:8px">'+["ما آخر سعر؟","متى تكونون جاهزين؟","هل الوثائق سارية؟","هل يوجد سائق؟"].map(function(q){return'<button class="ac" onclick="snd(\''+q+'\')">'+q+'</button>'}).join("")+'</div>'
+ +'<div class="row" style="flex-wrap:nowrap"><input id="cm" placeholder="اكتب رسالتك"><button class="ac" onclick="snd()">إرسال</button></div><div class="note">الردود آلية تجريبية لتوضيح الفكرة.</div>'}
+function snd(q){var t=q||document.getElementById("cm").value.trim();if(!t)return;
+ var k=CK;(ST.ch[k]=ST.ch[k]||[]).push({f:"me",t:t});save();draw();
+ setTimeout(function(){ST.ch[k].push({f:"them",t:rply(t)});save();if(CK==k&&cur==6)draw()},900)}
+function rply(t){return t.indexOf("سعر")>=0?"السعر قابل للتفاوض حسب المدة والكمية، أرسل لي التفاصيل.":(t.indexOf("متى")>=0||t.indexOf("جاهز")>=0?"نستطيع التعبئة خلال 24 ساعة من التأكيد.":(t.indexOf("وثائق")>=0?"وثائقنا سارية، وأرسلها لك بعد الاتفاق.":(t.indexOf("سائق")>=0||t.indexOf("مشغ")>=0?"نعم، نوفّر سائقاً أو مشغّلاً بخبرة حسب الطلب.":"شكراً لرسالتك، سأرد عليك بالتفاصيل قريباً.")))}
+var RM=0;
+function isH(t){var i=TYPES.indexOf(t);return i==6||(i>=8&&i<=11)}
+var ET=TYPES.filter(function(t){return!isH(t)}),HT=TYPES.filter(function(t){return isH(t)});
+var RT="",MIN=120,DOCS={v:["البطاقة الرمادية","التأمين","المراقبة التقنية","رخصة النقل / النشاط"],m:["وثيقة الملكية أو الفاتورة","التأمين","شهادة الفحص التقني / المطابقة"],c:["وثيقة الملكية أو الفاتورة","التأمين","شهادة الفحص التقني / المطابقة","شهادة فحص أجهزة الرفع"]};
+function dl(t){var i=TYPES.indexOf(t);return LIFT.indexOf(i)>=0?DOCS.c:(i==21?DOCS.v.concat(DOCS.c[3]):(MACH.indexOf(i)>=0?DOCS.m:DOCS.v))}
+var LIFT=[4,32,33,34,35,59],MACH=[2,3,23,24,25,26,27,28,29,30,31,44,45,46,47,48,56,57,58,64,65];
+function daysTo(v){return Math.ceil((new Date(v)-Date.now())/864e5)}
+function minDate(){return new Date(Date.now()+MIN*864e5).toISOString().slice(0,10)}
+function ev(i){return document.getElementById(i)}
+function sm(v){RM=v;RT="";draw()}
+function docsHtml(){
+ var L2=RM?HT:ET;if(L2.indexOf(RT)<0)RT=L2[0];
+ if(RM)return'<div class="c" style="margin-top:10px"><b>بيانات الملف المهني</b><div class="mu">تظهر هذه البيانات للشركات لتقيّم ملاءمتك للعمل.</div>'
+  +'<div class="r"><div><label>العمر</label><input id="rage" type="number" min="18" max="70"></div><div><label>الجنس</label><select id="rgd"><option>ذكر</option><option>أنثى</option></select></div></div>'
+  +'<label>إمكانية الالتحاق بالشركة عند التوافق</label><select id="rjn"><option>فوراً</option><option>خلال أسبوع</option><option>خلال شهر</option><option>بعد إشعار مسبق (أكثر من شهر)</option></select>'
+  +'<label>الخبرات السابقة (الشركات والمهام والمدة، إن وجدت)</label><input id="rex">'
+  +'<label>الشهادات والدبلومات (أرفقها إن وجدت)</label><input id="cf" type="file" multiple accept="image/*,.pdf"></div>';
+ return'<div class="c" style="margin-top:10px"><b>الوثائق المطلوبة (إلزامية)</b><div class="mu">أرفق كل وثيقة مع تاريخ انتهائها. يجب أن تبقى سارية 4 أشهر على الأقل، أي حتى '+minDate()+' على الأقل.</div>'
+  +dl(RT).map(function(n,i){return'<label>'+n+'</label><input id="df'+i+'" type="file" accept="image/*,.pdf"><input id="dd'+i+'" type="date" min="'+minDate()+'" style="margin-top:4px">'}).join("")+'</div>'}
+function rerr(t){ev("rmsg").innerHTML=t}
+function add(){
+ var n=ev("rn").value.trim(),p=+ev("rp").value,t=ev("rt").value,er=[],d=365;
+ if(!n)er.push("الاسم");if(!p)er.push("السعر / الأجر");
+ var o={n:n,t:t,c:ev("rc").value,r:4,p:p,m:ev("rm").value.trim(),y:+ev("ry").value||0,ph:ev("rph").value.trim(),hse:ev("rh").checked,j:0,own:1,dr:0};
+ if(RM){
+  var ag=+ev("rage").value;if(!ag||ag<18||ag>70)er.push("العمر (من 18 إلى 70)");
+  o.age=ag;o.g=ev("rgd").value;o.jn=ev("rjn").value;o.ex=ev("rex").value.trim();
+  o.certs=[].slice.call(ev("cf").files||[]).map(function(f){return f.name});
+  var dv=ev("rd").value;d=dv?daysTo(dv):365;
+ }else{
+  o.dr=ev("rw")?+ev("rw").value:0;d=9999;var docs=[];
+  dl(t).forEach(function(nm,i){var f=ev("df"+i).files[0],v=ev("dd"+i).value;
+   if(!f){er.push("أرفق: "+nm);return}
+   if(!v){er.push("حدّد تاريخ انتهاء: "+nm);return}
+   var k=daysTo(v);if(k<MIN)er.push(nm+" – تنتهي بعد "+Math.max(k,0)+" يوماً فقط، والمطلوب "+MIN+" يوماً (4 أشهر) على الأقل");
+   d=Math.min(d,k);docs.push({n:nm,f:f.name,d:k})});
+  o.docs=docs}
+ if(er.length){rerr("لا يمكن التسجيل: "+er.join(" • "));return}
+ o.d=d;ST.X.push(o);save();F={t:"",c:"",rd:0,so:"r"};go(3)}
+function xt(s){var o='';
+ if(isH(s.t)){
+  if(s.age)o+='<div>العمر: '+s.age+' · الجنس: '+esc(s.g||"")+'</div>';
+  if(s.jn)o+='<div>إمكانية الالتحاق: '+esc(s.jn)+'</div>';
+  if(s.ex)o+='<div>الخبرات: '+esc(s.ex)+'</div>';
+  o+='<div>الشهادات المرفقة: '+((s.certs&&s.certs.length)?esc(s.certs.join("، ")):'لم تُرفق')+'</div>'}
+ else if(s.docs)o+='<div style="margin-top:6px"><b>الوثائق المرفقة</b></div>'+s.docs.map(function(x){return'<div class="mu">'+esc(x.n)+': '+esc(x.f)+' · سارية '+x.d+' يوماً</div>'}).join("");
+ return o}
+S0.forEach(function(s,i){
+ if(i%4!=0&&s.d<130)s.d=130+i*7;
+ if(isH(s.t)){s.age=s.age||26+i%14;s.g=s.g||(i%5==4?"أنثى":"ذكر");s.jn=s.jn||["فوراً","خلال أسبوع","خلال شهر"][i%3];s.ex=s.ex||"خبرة ميدانية في مشاريع نفطية وصناعية (بيانات تجريبية)"}
+ else if(!s.docs)s.docs=dl(s.t).map(function(n,j){return{n:n,f:"document_"+(j+1)+".pdf",d:s.d+j*20}});
+ if(ST.dd[s.n]!=null)s.d=ST.dd[s.n]});
+ST.J=ST.J||[];
+var JC=["مهندس","تقني / فني","سائق / مشغّل","مسؤول سلامة HSE","مشرف أشغال","إداري / محاسب","أخرى"],CT=["دوام دائم","عقد محدد المدة","مهمة قصيرة"],JT=0,JF={t:"",c:""},JO="";
+var JD=[
+{id:"d1",title:"مهندس كهرباء صناعية",co:"شركة خدمات نفطية (مثال)",url:"https://example.com/careers/electrical-engineer",t:JC[0],c:CITIES[0],exp:3,ct:CT[0],desc:"تشغيل وصيانة اللوحات والمحطات الكهربائية في مواقع الحقول، مع إعداد تقارير الأعطال. يُفضَّل خبرة في PLC.",own:0},
+{id:"d2",title:"تقني صيانة كهرباء",co:"مؤسسة للأشغال الصناعية (مثال)",url:"https://example.com/jobs/technician",t:JC[1],c:CITIES[1],exp:0,ct:CT[1],desc:"تركيب وصيانة تمديدات كهربائية، العمل بنظام المناوبات. لا تُشترط خبرة سابقة.",own:0},
+{id:"d3",title:"سائق شاحنة ثقيلة",co:"شركة نقل (مثال)",url:"https://example.com/drivers",t:JC[2],c:CITIES[2],exp:5,ct:CT[0],desc:"قيادة شاحنات ثقيلة على خط الوادي – ورقلة – حاسي مسعود برخصة سارية.",own:0},
+{id:"d4",title:"مسؤول HSE",co:"مقاول أشغال (مثال)",url:"https://example.com/hse",t:JC[3],c:CITIES[0],exp:4,ct:CT[1],desc:"متابعة تطبيق إجراءات السلامة، وتقييم المخاطر، وإعداد تقارير الحوادث.",own:0},
+{id:"d5",title:"محاسب مشاريع",co:"شركة لوجستية (مثال)",url:"https://example.com/finance",t:JC[5],c:CITIES[1],exp:2,ct:CT[0],desc:"متابعة الفواتير والمستحقات ومصاريف المواقع.",own:0}
+];
+function jobsAll(){return JD.concat(ST.J||[])}
+function jobs(){
+ if(JA().indexOf(JT)<0)JT=0;
+ var sg='<div class="row" style="justify-content:flex-start;margin-bottom:8px">'+["الوظائف","أنشر وظيفة","ملفي (باحث عن عمل)"].map(function(n,i){return JA().indexOf(i)<0?'':'<button class="ac" style="'+(i==JT?'background:var(--pr);color:#fff':'')+'" onclick="JT='+i+';draw()">'+n+'</button>'}).join("")+'</div>';
+ return sg+[jlist,jpost,jprof][JT]()}
+function jsel(k,a){return'<select onchange="JF.'+k+'=this.value;draw()"><option value="">الكل</option>'+a.map(function(x){return'<option value="'+esc(x)+'"'+(JF[k]==x?' selected':'')+'>'+x+'</option>'}).join("")+'</select>'}
+function fit(j){var P=ST.P;if(!P)return null;var r=[],ok=1,near=0;
+ if(P.t==j.t)r.push(["ok","التخصص مطابق: "+j.t]);else{r.push(["bd","نوع الوظيفة ("+j.t+") يختلف عما تبحث عنه ("+P.t+")"]);ok=0}
+ if(!j.exp)r.push(["ok","لا تُشترط خبرة"]);else if(P.y>=j.exp)r.push(["ok","خبرتك "+P.y+" سنوات تكفي (المطلوب "+j.exp+")"]);else{r.push(["wn","الخبرة المطلوبة "+j.exp+" سنوات وخبرتك "+P.y]);near=1}
+ if(P.c==j.c)r.push(["ok","الوظيفة في مدينتك"]);else r.push(["wn","الوظيفة في "+j.c+" وأنت في "+P.c]);
+ if(P.ct=="أي نوع"||P.ct==j.ct)r.push(["ok","نوع العقد مقبول: "+j.ct]);else r.push(["wn","العقد المعروض ("+j.ct+") غير الذي تفضّله ("+P.ct+")"]);
+ return{r:r,v:ok&&!near?"تناسبك ✓":(ok&&near?"قريبة من ملفك":"لا تناسبك"),c:ok&&!near?"ok":(ok&&near?"wn":"bd")}}
+function jlist(){
+ var l=jobsAll().filter(function(j){return(!JF.t||j.t==JF.t)&&(!JF.c||j.c==JF.c)});
+ var h='<div class="c"><div class="r"><div><label>نوع الوظيفة</label>'+jsel("t",JC)+'</div><div><label>الموقع</label><div class="mu">يعرض الموقع الجغرافي في تفاصيل الوظيفة عند إضافته</div></div></div><div class="mu" style="margin-top:6px">'+l.length+' وظيفة'+(ST.P?'':' – أنشئ ملفك من «ملفي» لتعرف أي الوظائف تناسبك')+'</div></div>';
+ return h+(l.length?l.map(function(j){var f=fit(j),o=JO==j.id;
+  return'<div class="c"><div class="row"><b>'+esc(j.title)+'</b>'+(f?'<span class="tag '+f.c+'">'+f.v+'</span>':'')+'</div><div class="mu">'+esc(j.co)+' · '+esc(j.c)+'</div>'
+  +'<div style="margin:6px 0"><span class="tag">'+esc(j.t)+'</span><span class="tag">'+esc(j.ct)+'</span><span class="tag">'+(j.exp?'الخبرة: '+j.exp+' سنوات فأكثر':'بدون شرط خبرة')+'</span></div>'
+  +'<div style="font-size:14px">'+esc(o?j.desc:j.desc.slice(0,110)+(j.desc.length>110?'…':''))+'</div>'
+  +(o&&f?'<div style="margin-top:8px">'+f.r.map(function(x){return'<div class="mu" style="color:var(--'+(x[0]=="ok"?'ok':x[0]=="wn"?'warn':'bad')+')">'+(x[0]=="ok"?'✓ ':x[0]=="wn"?'⚠ ':'✗ ')+esc(x[1])+'</div>'}).join("")+'</div>':'')
+  +(o&&!f?'<div class="mu" style="margin-top:8px">أنشئ ملفك من «ملفي» لتعرف إن كانت الوظيفة تناسبك.</div>':'')
+  +'<div class="row" style="margin-top:8px"><button class="ac" onclick="JO=JO==\''+j.id+'\'?\'\':\''+j.id+'\';draw()">'+(o?'إخفاء':'الوصف ومدى ملاءمتك')+'</button><a class="ac" style="background:var(--pr);color:#fff" target="_blank" rel="noopener" href="'+esc(j.url)+'">Apply – تقدّم على موقع الشركة ↗</a></div>'
+  +(j.own?'<button class="ac" style="margin-top:6px;color:var(--bad);border-color:var(--bad)" onclick="jdel(\''+j.id+'\')">حذف الوظيفة</button>':'')+'</div>'}).join(""):'<div class="c empty">لا توجد وظائف مطابقة.</div>')}
+function jpost(){return'<div class="c"><b>أنشر وظيفة</b><div class="mu">للشركات: أدرج الوظيفة والخبرة المطلوبة، ويتقدّم المرشحون عبر موقعكم مباشرة.</div>'
+ +'<label>اسم الشركة</label><input id="jco" value="'+esc(cu()&&cu().role=="company"?cu().name:"")+'"><label>عنوان الوظيفة</label><input id="jti" placeholder="مثال: مهندس كهرباء صناعية">'
+ +'<div class="r"><div><label>نوع الوظيفة</label><select id="jt">'+opts(JC)+'</select></div><div style="display:none"><select id="jc">'+opts(CITIES)+'</select></div></div>'+llLocationBox('jobpost')
+ +'<div class="r"><div><label>الخبرة المطلوبة (سنوات، 0 = بدون شرط)</label><input id="jex" type="number" min="0" value="0"></div><div><label>نوع العقد</label><select id="jct">'+opts(CT)+'</select></div></div>'
+ +'<label>وصف الوظيفة والمهام والمؤهلات</label><textarea id="jde" rows="4"></textarea>'
+ +'<label>رابط موقع الشركة أو صفحة التقديم (إليه يذهب زر Apply)</label><input id="jur" type="url" placeholder="https://..." dir="ltr">'
+ +'<div id="jmsg" class="mu" style="color:var(--bad);margin-top:6px"></div><button class="go" onclick="jadd()">انشر الوظيفة</button></div>'}
+function jadd(){var g=function(i){return document.getElementById(i).value.trim()},er=[],u=g("jur");
+ if(!g("jco"))er.push("اسم الشركة");if(!g("jti"))er.push("عنوان الوظيفة");if(!g("jde"))er.push("وصف الوظيفة");
+ if(!/^https?:[/][/]/i.test(u))er.push("رابط صحيح يبدأ بـ https://");
+ if(er.length){document.getElementById("jmsg").innerHTML="أكمل: "+er.join(" • ");return}
+ (ST.J=ST.J||[]).unshift({id:String(Date.now()),title:g("jti"),co:g("jco"),url:u,t:g("jt"),c:g("jc"),exp:Math.max(0,+g("jex")||0),ct:g("jct"),desc:g("jde"),own:1});
+ save();toast("تم نشر الوظيفة ✓");JT=0;draw()}
+function jdel(id){ST.J=(ST.J||[]).filter(function(j){return j.id!=id});save();draw()}
+function jprof(){var P=ST.P||{};
+ return'<div class="c"><b>ملفي كباحث عن عمل</b><div class="mu">أنشئ ملفك مرة واحدة لتعرف أي الوظائف تناسبك.</div>'
+ +'<label>الاسم الكامل</label><input id="pn" value="'+esc(P.n||(cu()?cu().name:""))+'">'
+ +'<div class="r"><div><label>تاريخ الميلاد</label><input id="pb" type="date" min="'+dobMin()+'" max="'+dobMax()+'" value="'+(P.dob||"")+'" oninput="document.getElementById(\'pag\').textContent=ageTxt(this.value)"><div id="pag" class="mu">'+ageTxt(P.dob||"")+'</div></div><div><label>الجنس</label><select id="pg">'+opts(["ذكر","أنثى"],P.g)+'</select></div></div>'
+ +llLocationBox('profile')+'<div style="display:none"><select id="pc">'+opts(CITIES,P.c)+'</select></div><div><label>سنوات الخبرة</label><input id="py" type="number" min="0" value="'+(P.y==null?0:P.y)+'"></div>'
+ +'<label>الخبرات السابقة (إن وجدت)</label><input id="px" value="'+esc(P.ex||"")+'">'
+ +'<label>الشهادات والدبلومات (أرفقها إن وجدت)</label><input id="pf" type="file" multiple accept="image/*,.pdf">'+(P.cf&&P.cf.length?'<div class="mu">مرفق سابقاً: '+esc(P.cf.join("، "))+'</div>':'')
+ +'<label>إمكانية الالتحاق بالشركة عند التوافق</label><select id="pj">'+opts(["فوراً","خلال أسبوع","خلال شهر","بعد إشعار مسبق (أكثر من شهر)"],P.jn)+'</select>'
+ +'<label>رقم الهاتف</label><input id="pp" type="tel" value="'+esc(P.ph||"")+'">'
+ +'<label>نوع العقد الذي تقبله</label><select id="pk">'+opts(["أي نوع"].concat(CT),P.ct)+'</select>'
+ +'<label>نوع الوظيفة التي تبحث عنها</label><select id="pt">'+opts(JC,P.t)+'</select>'
+ +'<div id="pmsg" class="mu" style="color:var(--bad);margin-top:6px"></div><button class="go" onclick="psave()">احفظ ملفي</button></div>'}
+function psave(){var g=function(i){return document.getElementById(i)},a=ageOf(g("pb").value),er=[];
+ if(!g("pn").value.trim())er.push("الاسم");if(!(a>=18&&a<=70))er.push("تاريخ ميلاد يعطي عمراً بين 18 و 70 سنة");
+ if(er.length){g("pmsg").innerHTML="أكمل: "+er.join(" • ");return}
+ var old=(ST.P&&ST.P.cf)||[],nf=[].slice.call(g("pf").files||[]).map(function(f){return f.name});
+ ST.P={n:g("pn").value.trim(),age:a,dob:g("pb").value,g:g("pg").value,c:g("pc").value,y:Math.max(0,+g("py").value||0),ex:g("px").value.trim(),cf:nf.length?nf:old,jn:g("pj").value,ph:g("pp").value.trim(),ct:g("pk").value,t:g("pt").value};
+ save();toast("تم حفظ ملفك ✓");JT=0;draw()}
+ST.U=ST.U||[];if(ST.S===undefined)ST.S=null;
+var GM=0,GR="",GE="",RL={company:"شركة / مقاول",supplier:"مورد معدات أو نقل",seeker:"باحث عن عمل",other:"جهة أخرى"};
+var TABS={company:[0,1,2,3,6,7,8],supplier:[0,1,2,3,4,5,6,7,8],seeker:[7,8],other:[0,1,2,3,4,5,6,7,8]};
+function cu(){var id=ST.S;return(ST.U||[]).filter(function(u){return u.id==id})[0]||null}
+function JA(){var u=cu(),r=u&&u.role;return r=="seeker"?[0,2]:(r=="other"||!r?[0,1,2]:[0,1])}
+function gate(){
+ var h='<div class="c" style="text-align:center"><b style="font-size:20px">مرحباً بك في LogiLink DZ</b><div class="mu">أنشئ حساباً أو سجّل الدخول للدخول إلى التطبيق.</div>'
+ +'<div class="row" style="justify-content:flex-start;margin-top:10px">'+["إنشاء حساب","تسجيل الدخول"].map(function(n,i){return'<button class="ac" style="'+(i==GM?'background:var(--pr);color:#fff':'')+'" onclick="GM='+i+';GE=\'\';draw()">'+n+'</button>'}).join("")+'</div></div>';
+ if(GM==0)h+='<div class="c"><label>من أنت؟ اختر نوع حسابك</label>'+Object.keys(RL).map(function(k){return'<label style="display:flex;gap:8px;align-items:center;margin:6px 0;color:var(--tx);font-size:15px"><input type="radio" name="grole" value="'+k+'" style="width:auto"'+(GR==k?' checked':'')+' onchange="GR=this.value">'+RL[k]+'</label>'}).join("")
+  +'<label>الاسم (اسم الشركة أو الاسم الكامل)</label><input id="gn"><label>البريد الإلكتروني (مطلوب لتأكيد الحساب)</label><input id="gi" type="email" autocomplete="email" dir="ltr">'+llLocationBox('signup')
+  +'<label>كلمة المرور</label><input id="gp" type="password" dir="ltr" onkeydown="return event.keyCode!=32" oninput="document.getElementById(\'gpw\').innerHTML=pwHint(this.value)"><div id="gpw" style="margin-top:6px">'+pwHint("")+'</div><label>تأكيد كلمة المرور</label><input id="gp2" type="password" dir="ltr" onkeydown="return event.keyCode!=32">'
+  +'<div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="gsign()">أنشئ الحساب</button></div>';
+ else h+='<div class="c"><label>البريد الإلكتروني</label><input id="gi" type="email" autocomplete="email" dir="ltr"><label>كلمة المرور</label><input id="gp" type="password"><div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="glog()">دخول</button></div>';
+ return h+'<div class="note">تُدار الحسابات عبر Supabase. يجب تأكيد البريد الإلكتروني قبل تسجيل الدخول. لا تشارك كلمة مرورك مع أي شخص.</div>'}
+function hsh(p,s){var C=window.crypto;if(!(C&&C.subtle))return Promise.reject();
+ return C.subtle.digest("SHA-256",new TextEncoder().encode(s+":"+p)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")})}
+function rnd(){var C=window.crypto;return C&&C.getRandomValues?Array.prototype.join.call(C.getRandomValues(new Uint32Array(3)),""):String(Math.random()).slice(2)}
+async function llAuthFetch(path,body){
+ var res=await fetch(LL_SUPABASE_URL+path,{method:"POST",headers:{"apikey":LL_SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify(body)});
+ var data={};try{data=await res.json()}catch(e){}
+ if(!res.ok){var msg=data.msg||data.message||data.error_description||data.error||"HTTP "+res.status;throw Error(msg)}
+ return data;
+}
+function llAuthError(e){var m=String(e&&e.message||e||"");if(/already registered|user already registered/i.test(m))return "هذا البريد مسجّل مسبقاً. جرّب تسجيل الدخول.";if(/invalid login credentials/i.test(m))return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";if(/email not confirmed/i.test(m))return "يجب تأكيد بريدك الإلكتروني من الرسالة التي وصلتك أولاً.";if(/password.*(weak|short|least)/i.test(m))return "كلمة المرور لا تستوفي شروط Supabase.";if(/fetch|network/i.test(m))return "تعذر الاتصال بـ Supabase. تحقق من الإنترنت وافتح الملف عبر استضافة HTTPS إذا استمرت المشكلة.";return "تعذر إتمام العملية: "+m}
+function llLocalUser(authUser,role,name,email,wilaya,commune){
+ var u={id:authUser.id,role:role||((authUser.user_metadata||{}).role)||"other",name:name||((authUser.user_metadata||{}).full_name)||email,i:email,c:commune||"",wc:wilaya||"",cc:commune||""};
+ ST.U=ST.U||[];var ix=ST.U.findIndex(function(x){return x.id===u.id||x.i===email});if(ix>=0)ST.U[ix]=Object.assign({},ST.U[ix],u);else ST.U.push(u);ST.S=u.id;save();return u;
+}
+async function gsign(){
+ var g=function(i){var el=document.getElementById(i);return el?el.value.trim():""},er=[],email=g("gi").toLowerCase(),p=document.getElementById("gp").value,ge=document.getElementById("gerr");
+ if(!GR)er.push("نوع الحساب");if(!g("gn"))er.push("الاسم");
+ if(!/^[^ @]+@[^ @]+[.][^ @]+$/.test(email))er.push("بريد إلكتروني صحيح (التسجيل برقم الهاتف غير مفعّل حالياً)");
+ pwChk(p).forEach(function(x){er.push("كلمة المرور: "+x)});
+ if(p!==document.getElementById("gp2").value)er.push("كلمتا المرور غير متطابقتين");
+ var w=g("signup-wilaya"),c=g("signup-commune");if(!w)er.push("اختر الولاية");if(!c)er.push("اختر البلدية");
+ if(er.length){ge.innerHTML="أكمل: "+er.join(" • ");return}
+ ge.style.color="var(--warn)";ge.textContent="جارٍ إنشاء الحساب...";
+ try{
+  var data=await llAuthFetch("/auth/v1/signup",{email:email,password:p,data:{full_name:g("gn"),role:GR,preferred_language:LANG||"ar",wilaya_code:w,commune_code:c}});
+  if(!data.user){throw Error("لم يُرجع Supabase بيانات المستخدم.")}
+  if(data.session){llLocalUser(data.user,GR,g("gn"),email,w,c);localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);land();return}
+  ge.style.color="var(--ok)";ge.innerHTML="تم إنشاء الحساب مبدئياً. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).";
+ }catch(e){ge.style.color="var(--bad)";ge.textContent=llAuthError(e)}
+}
+async function glog(){
+ var email=document.getElementById("gi").value.trim().toLowerCase(),p=document.getElementById("gp").value,ge=document.getElementById("gerr");
+ if(!/^[^ @]+@[^ @]+[.][^ @]+$/.test(email)||!p){ge.textContent="أدخل البريد الإلكتروني وكلمة المرور.";return}
+ ge.style.color="var(--warn)";ge.textContent="جارٍ تسجيل الدخول...";
+ try{
+  var data=await llAuthFetch("/auth/v1/token?grant_type=password",{email:email,password:p});
+  if(!data.user||!data.session)throw Error("لم يكتمل تسجيل الدخول.");
+  var meta=data.user.user_metadata||{};llLocalUser(data.user,meta.role,meta.full_name,email,meta.wilaya_code,meta.commune_code);
+  localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);ge.textContent="";land();
+ }catch(e){ge.style.color="var(--bad)";ge.textContent=llAuthError(e)}
+}
+function land(){var u=cu();toast("أهلاً بك، "+u.name);cur={company:1,supplier:4,seeker:7,other:0}[u.role];JT=u.role=="seeker"&&!ST.P?2:0;GE="";draw()}
+function out(){ST.S=null;GM=1;save();draw()}
+function pwR(p){var r={u:0,l:0,d:0,s:0,w:0,sp:0,n:p.length};
+ for(var i=0;i<p.length;i++){var c=p.charCodeAt(i);
+  if(c<=32||c==160)r.sp++;else if(c>=65&&c<=90)r.u++;else if(c>=97&&c<=122)r.l++;else if(c>=48&&c<=57)r.d++;else if((c>=33&&c<=47)||(c>=58&&c<=64)||(c>=91&&c<=96)||(c>=123&&c<=126))r.s++;else r.w++}
+ return r}
+function pwChk(p){var r=pwR(p),e=[];
+ if(r.n<8)e.push("8 خانات على الأقل");if(r.sp)e.push("بدون فراغات");
+ if(r.u<1)e.push("حرف كبير واحد على الأقل (A-Z)");if(r.l<1)e.push("حرف صغير واحد على الأقل (a-z)");
+ if(r.d<1)e.push("رقم واحد على الأقل");if(r.s<1)e.push("رمز واحد على الأقل مثل ! @ # $");
+ if(r.w)e.push("أحرف لاتينية وأرقام ورموز فقط");return e}
+function pwHint(p){var r=pwR(p),it=[[r.n>=8,"8 خانات فأكثر"],[r.n>0&&!r.sp,"بدون فراغات"],[r.u>=1,"حرف كبير (A-Z)"],[r.l>=1,"حرف صغير (a-z)"],[r.d>=1,"رقم"],[r.s>=1,"رمز مثل ! @ #"],[r.n>0&&!r.w,"أحرف لاتينية فقط"]];
+ return it.map(function(x){return'<span class="tag '+(x[0]?'ok':'')+'">'+(x[0]?'✓ ':'')+x[1]+'</span>'}).join("")+(r.n>=12&&r.u>=2&&r.l>=2&&r.d>=1&&r.s>=1&&!r.sp&&!r.w?'<div class="mu" style="color:var(--ok)">كلمة مرور قوية</div>':'')}
+function ageOf(v){if(!v)return 0;var d=new Date(v),t=new Date(),a=t.getFullYear()-d.getFullYear();if(t.getMonth()<d.getMonth()||(t.getMonth()==d.getMonth()&&t.getDate()<d.getDate()))a--;return a}
+function ageTxt(v){return v?"العمر: "+ageOf(v)+" سنة":"اختر تاريخ ميلادك من التقويم"}
+function dobAt(y){var d=new Date();d.setFullYear(d.getFullYear()-y);return d.toISOString().slice(0,10)}
+function dobMin(){return dobAt(70)}
+function dobMax(){return dobAt(18)}
+function flagSvg(){var p=[],i,a,r;for(i=0;i<10;i++){a=(-90+i*36+20)*Math.PI/180;r=i%2?2.9:7;p.push((55+r*Math.cos(a)).toFixed(1)+","+(30+r*Math.sin(a)).toFixed(1))}
+ return'<svg width="54" height="36" viewBox="0 0 90 60" style="border:1px solid var(--bd);border-radius:4px;display:block"><defs><mask id="cm"><rect width="90" height="60" fill="#fff"/><circle cx="49.5" cy="30" r="12" fill="#000"/></mask></defs><rect width="45" height="60" fill="#006233"/><rect x="45" width="45" height="60" fill="#fff"/><circle cx="45" cy="30" r="15" fill="#d21034" mask="url(#cm)"/><polygon points="'+p.join(" ")+'" fill="#d21034"/></svg>'}
+function tday(){var d=new Date(),s;try{s=d.toLocaleDateString(LANG=="en"?"en-GB":(LANG=="fr"?"fr-FR":"ar-DZ-u-nu-latn"),{weekday:"long",year:"numeric",month:"long",day:"numeric"})}catch(e){s=d.toDateString()}document.getElementById("today").textContent="📅 اليوم: "+s}
+var IC=["🏠","📝","📋","🏗️","➕","👤","💬","💼","🧭"],LANG=ST.lang||(/^fr/i.test(navigator.language||"")?"fr":(/^en/i.test(navigator.language||"")?"en":"ar")),XD={},PL=[],NO=new WeakMap(),PO=new WeakMap();
+var DICT=`#لوحة|Home
+#طلب|Request
+#طلباتي|My requests
+#الموارد|Resources
+#سجّل|Register
+#حسابي|My account
+#دردشة|Chat
+#وظائف|Jobs
+#الوظائف|Jobs
+#مشروع|Project
+#عاجل|Urgent
+#الكل|All
+#متاح|Available
+#محجوز|Booked
+#رقم|Digit
+#ذكر|Male
+#أنثى|Female
+#أخرى|Other
+#مهندس|Engineer
+#دخول|Log in
+#مدفوع|Paid
+#إرسال|Send
+#فتح|Open
+#التفاصيل|Details
+#إخفاء|Hide
+#تحديث|Update
+#حذف|Delete
+#فوراً|Immediately
+#مقارنة|Compare
+#حلّل|Analyze
+#المدينة|City
+#النوع|Type
+#الترتيب|Sort
+#الكمية|Quantity
+#التشغيل|Operation
+#بدون فراغات|No spaces
+#الجنس|Gender
+#العمر|Age
+#الردود|Replies
+نموذج أولي – ممر الوادي · ورقلة · حاسي مسعود (بيانات تجريبية)|Prototype – El Oued · Ouargla · Hassi Messaoud corridor (demo data)
+نموذج توضيحي: الموردون والأسعار افتراضية وليست عروضاً حقيقية. البيانات تُحفظ في متصفحك فقط.|Demo only: suppliers and prices are fictional, not real offers. Data is stored in your browser only.
+تم إنشاء هذا التطبيق بواسطة أسامة حنكة|This app was created by Oussama Henka
+تسجيل الخروج|Log out
+اليوم:|Today:
+حاسي مسعود|Hassi Messaoud
+ورقلة|Ouargla
+الوادي|El Oued
+شاحنة قلابة|Dump truck
+شاحنة صهريج|Tanker truck
+حفارة|Excavator
+شفالة|Loader
+رافعة|Crane
+حافلة عمال|Worker bus
+سائق / مشغل|Driver / operator
+سيارة / مركبة خفيفة|Car / light vehicle
+فني متخصص|Specialist technician
+مسؤول سلامة HSE|HSE officer
+مشرف أشغال|Site supervisor
+تقني / فني|Technician
+إداري / محاسب|Admin / accountant
+أي نوع|Any type
+دوام دائم|Permanent
+عقد محدد المدة|Fixed-term contract
+مهمة قصيرة|Short assignment
+شركة / مقاول|Company / Contractor
+مورد معدات أو نقل|Equipment / transport supplier
+باحث عن عمل|Job seeker
+جهة أخرى|Other organization
+مرحباً بك في|Welcome to
+أنشئ حساباً أو سجّل الدخول للدخول إلى التطبيق.|Create an account or log in to enter the app.
+إنشاء حساب|Create account
+تسجيل الدخول|Log in
+من أنت؟ اختر نوع حسابك|Who are you? Choose your account type
+الاسم (اسم الشركة أو الاسم الكامل)|Name (company or full name)
+البريد الإلكتروني أو رقم الهاتف|Email or phone number
+تأكيد كلمة المرور|Confirm password
+كلمة المرور:|Password:
+كلمة المرور|Password
+أنشئ الحساب|Create account
+تُدار الحسابات عبر Supabase. يجب تأكيد البريد الإلكتروني قبل تسجيل الدخول. لا تشارك كلمة مرورك مع أي شخص.|Demo: accounts are stored in your browser only. In the real platform, accounts and passwords are managed on a secure server.
+8 خانات فأكثر|8+ characters
+حرف كبير (A-Z)|Uppercase (A-Z)
+حرف صغير (a-z)|Lowercase (a-z)
+رمز مثل ! @ #|Symbol like ! @ #
+أحرف لاتينية فقط|Latin letters only
+كلمة مرور قوية|Strong password
+أكمل:|Complete:
+نوع الحساب|account type
+بريد إلكتروني أو رقم هاتف صحيح|a valid email or phone number
+8 خانات على الأقل|at least 8 characters
+بدون فراغات|no spaces
+حرف كبير واحد على الأقل (A-Z)|at least one uppercase letter (A-Z)
+حرف صغير واحد على الأقل (a-z)|at least one lowercase letter (a-z)
+رقم واحد على الأقل|at least one digit
+رمز واحد على الأقل مثل ! @ # $|at least one symbol such as ! @ # $
+أحرف لاتينية وأرقام ورموز فقط|Latin letters, digits and symbols only
+كلمتا المرور غير متطابقتين|passwords do not match
+هذا البريد أو الهاتف مسجّل مسبقاً|this email/phone is already registered
+بيانات الدخول غير صحيحة.|Incorrect login details.
+طلبات ومشاريع|Requests & projects
+بنود مغطاة|Items covered
+قيمة العروض المقبولة|Accepted offers value
+موردون جاهزون للتعبئة|Ready-to-mobilize suppliers
+مستحقات قيد الدفع|Payments pending
+كيف تعمل المنصة؟|How does the platform work?
+انشر طلباً (أو مشروعاً بعدة موارد) ← استقبل عروضاً مرتبة بالقرب والتوثيق والتقييم ← اقبل العرض ← تواصل مع المورد ← قيّم بعد الإنجاز.|Post a request (or a multi-resource project) → get offers ranked by proximity, verification and rating → accept an offer → contact the supplier → rate after completion.
+إعادة ضبط النموذج|Reset demo
+اطلب بسرعة|Request quickly
+اختر قالباً جاهزاً أو اكتب طلبك بكلامك:|Pick a ready template or describe your request in your own words:
+10 شاحنات – أسبوع|10 trucks – 1 week
+حفارتان – 10 أيام|2 excavators – 10 days
+رافعة – 3 أيام|Crane – 3 days
+حافلتا عمال – شهر|2 worker buses – 1 month
+مشروع كامل|Full project
+↻ أعد آخر طلب|↻ Repeat last request
+مثال: أحتاج 3 حفارات و5 شاحنات قلابة في ورقلة لأسبوعين|e.g. I need 3 excavators and 5 dump trucks in Ouargla for 2 weeks
+فهمت:|Understood:
+راجعها ثم انشر.|Review, then publish.
+المورد المطلوب|Required supplier
++ إضافة مورد آخر (مشروع متعدد الموارد)|+ Add another supplier (multi-resource project)
+المدة (أيام)|Duration (days)
+موقع العمل|Work location
+طلب عاجل (خلال 24 ساعة، رسم إضافي 20%)|Urgent request (within 24 h, 20% surcharge)
+أريد موردين يوفّرون سائقاً/مشغّلاً فقط|Only suppliers that provide a driver/operator
+أطلب بصفتي|Request as
+شركة / طالب خدمة|Company / service requester
+إن كنت مورداً وتحتاج سائقاً أو آلية أو سيارة من موردين آخرين، اختر اسمك هنا.|If you are a supplier who needs a driver, machine or car from other suppliers, choose your name here.
+انشر واستقبل العروض|Publish & receive offers
+لا توجد طلبات بعد. انشر طلبك الأول من تبويب «طلب».|No requests yet. Post your first one from the “Request” tab.
+من:|From:
+★ الأفضل لك|★ Best for you
+الأقل سعراً|Lowest price
+★ مفضّل|★ Favorite
+جاهز للتعبئة|Ready to mobilize
+وثائق تنتهي قريباً|Documents expiring soon
+الالتحاق:|Joining:
+اقبل العرض|Accept offer
+تم القبول ✓|Accepted ✓
+تم القبول|Accepted
+أمر الخدمة|Service order
+للتواصل مع المورد:|Supplier contact:
+تحديث الحالة ←|Update status →
+الدفع:|Payment:
+بانتظار الفاتورة|Awaiting invoice
+فاتورة صادرة – تستحق خلال 30 يوماً|Invoice issued – due within 30 days
+مدفوع ✓|Paid ✓
+تحديث الدفع|Update payment
+في الطريق|On the way
+بدأ التنفيذ|In progress
+أنجز|Completed
+الوصول المتوقع:|Expected arrival:
+بعد الإنجاز قيّم المورد:|After completion, rate the supplier:
+تم الإنجاز|Mark completed
+أنجزت الخدمة، وتقييمك:|Service completed, your rating:
+مشاركة عبر واتساب|Share on WhatsApp
+واتساب|WhatsApp
+نسخ|Copy
+طباعة / PDF|Print / PDF
+إغلاق|Close
+💬 دردشة مع المورد|💬 Chat with supplier
+💬 دردشة مع الطالب|💬 Chat with requester
+💬 راسل المورد|💬 Message supplier
+لا يوجد مورد متاح حالياً لهذا النوع.|No supplier is currently available for this type.
+الأعلى تقييماً|Top rated
+الجاهزون للتعبئة فقط|Ready to mobilize only
+شهادة سلامة HSE|HSE safety certificate
+المواصفات|Specifications
+التخصص والشهادات|Specialty & certificates
+الخبرة:|Experience:
+أعمال منجزة:|Completed jobs:
+التشغيل:|Operation:
+مع سائق/مشغّل|With driver/operator
+بدون سائق|Without driver
+التوفر خلال 14 يوماً (أخضر متاح، أحمر محجوز – بيانات تجريبية):|Availability over 14 days (green available, red booked – demo data):
+أضف إلى المفضلة|Add to favorites
+إزالة من المفضلة|Remove from favorites
+تبديل التوفر|Toggle availability
+حذف الوظيفة|Delete job
+لا يفي بشرط 4 أشهر – متبق |Does not meet the 4-month rule – remaining 
+لا تفي بشرط 4 أشهر|does not meet the 4-month rule
+وثائق منتهية|Documents expired
+الوثائق المرفقة|Attached documents
+سارية|valid
+الوثائق: 4 / 4 (بيانات تجريبية)|Documents: 4 / 4 (demo data)
+لا يوجد مورد مطابق.|No matching supplier.
+البطاقة الرمادية|Registration card
+التأمين|Insurance
+المراقبة التقنية|Technical inspection
+رخصة النقل / النشاط|Transport / activity license
+تاريخ انتهاء الصلاحية|Expiry date
+لا يمكن التسجيل:|Cannot register:
+أرفق:|Attach:
+تنتهي بعد|expires in
+يوماً فقط، والمطلوب 120 يوماً (4 أشهر) على الأقل|days only; at least 120 days (4 months) required
+سجّل كمورد معدات أو نقل|Register as an equipment / transport supplier
+للبحث عن عمل افتح تبويب «وظائف» ثم «ملفي».|To look for a job, open the “Jobs” tab then “My profile”.
+أضف شاحنتك أو آليتك لتصلك الطلبات.|Add your truck or machine to receive requests.
+اسم المورد / المؤسسة|Supplier / company name
+السعر اليومي (دج)|Daily price (DZD)
+الموديل / السعة / المواصفات|Model / capacity / specs
+سنوات الخبرة|Years of experience
+رقم الهاتف (يظهر للشركة بعد قبول العرض فقط)|Phone number (shown to the company only after the offer is accepted)
+أمتلك شهادة سلامة HSE سارية|I hold a valid HSE safety certificate
+حسابك (مورد أو كفاءة)|Your account (supplier or talent)
+وثائقك سارية ✓|Your documents are valid ✓
+أنا متاح الآن ✓ – اضغط لأصبح غير متاح|I'm available now ✓ – tap to become unavailable
+أنا محجوز الآن – اضغط لأصبح متاحاً|I'm booked now – tap to become available
++ أحتاج سائقاً أو آلية أو سيارة|+ I need a driver, machine or car
+طلب جديد:|New request:
+إشعار واتساب:|WhatsApp notification:
+قدّم عرضي بسعري|Submit my offer at my price
+قدّمت عرضك ✓|You submitted your offer ✓
+لا توجد طلبات مفتوحة لنوعك الآن. انشر طلباً من تبويب «طلب» لتظهر هنا.|No open requests for your type right now. Post one from the “Request” tab to see it here.
+متبق على أقرب وثيقة|Remaining on nearest document
+أقل من 4 أشهر|less than 4 months
+لا توجد محادثات بعد. افتح دردشة من أي عرض، أو من ملف مورد (راسل المورد).|No chats yet. Open a chat from any offer or supplier profile (Message supplier).
+محادثة عامة|General chat
+بخصوص طلب|About a request
+← المحادثات|← Chats
+بخصوص:|About:
+ابدأ بسؤال سريع من الأزرار أدناه أو اكتب رسالتك.|Start with a quick question below or type your message.
+ما آخر سعر؟|What's your best price?
+متى تكونون جاهزين؟|When can you be ready?
+هل الوثائق سارية؟|Are your documents valid?
+هل يوجد سائق؟|Is a driver available?
+اكتب رسالتك|Type your message
+الردود آلية تجريبية لتوضيح الفكرة.|Replies are automated demo replies to illustrate the idea.
+السعر قابل للتفاوض حسب المدة والكمية، أرسل لي التفاصيل.|The price is negotiable depending on duration and quantity – send me the details.
+نستطيع التعبئة خلال 24 ساعة من التأكيد.|We can mobilize within 24 hours of confirmation.
+وثائقنا سارية، وأرسلها لك بعد الاتفاق.|Our documents are valid; I'll send them after we agree.
+نعم، نوفّر سائقاً أو مشغّلاً بخبرة حسب الطلب.|Yes, we provide an experienced driver or operator on request.
+شكراً لرسالتك، سأرد عليك بالتفاصيل قريباً.|Thanks for your message – I'll reply with details soon.
+أنشر وظيفة|Post a job
+ملفي (باحث عن عمل)|My profile (job seeker)
+نوع الوظيفة|Job type
+ – أنشئ ملفك من «ملفي» لتعرف أي الوظائف تناسبك| – create your profile in “My profile” to see which jobs suit you
+تناسبك ✓|Suits you ✓
+قريبة من ملفك|Close to your profile
+لا تناسبك|Doesn't suit you
+الخبرة: |Experience: 
+ سنوات فأكثر| years or more
+بدون شرط خبرة|No experience required
+الوصف ومدى ملاءمتك|Description & fit
+تقدّم على موقع الشركة|apply on the company website
+أنشئ ملفك من «ملفي» لتعرف إن كانت الوظيفة تناسبك.|Create your profile in “My profile” to see if this job suits you.
+التخصص مطابق:|Specialty matches:
+يختلف عما تبحث عنه|differs from what you are looking for
+لا تُشترط خبرة|No experience required
+خبرتك|Your experience
+سنوات تكفي (المطلوب|years is enough (required
+الخبرة المطلوبة|Required experience
+سنوات وخبرتك|years and yours is
+الوظيفة في مدينتك|The job is in your city
+الوظيفة في|The job is in
+وأنت في|and you are in
+نوع العقد مقبول:|Contract type accepted:
+العقد المعروض|Offered contract
+غير الذي تفضّله|is not the one you prefer
+نوع الوظيفة|Job type
+للشركات: أدرج الوظيفة والخبرة المطلوبة، ويتقدّم المرشحون عبر موقعكم مباشرة.|For companies: list the job and required experience; candidates apply directly through your website.
+اسم الشركة|Company name
+عنوان الوظيفة|Job title
+مثال: مهندس كهرباء صناعية|e.g. Industrial electrical engineer
+الخبرة المطلوبة (سنوات، 0 = بدون شرط)|Required experience (years, 0 = none)
+نوع العقد|Contract type
+وصف الوظيفة والمهام والمؤهلات|Job description, duties and qualifications
+وصف الوظيفة|job description
+رابط موقع الشركة أو صفحة التقديم (إليه يذهب زر Apply)|Company website or application page link (the Apply button goes here)
+انشر الوظيفة|Publish job
+رابط صحيح يبدأ بـ https://|a valid link starting with https://
+ملفي كباحث عن عمل|My job-seeker profile
+أنشئ ملفك مرة واحدة لتعرف أي الوظائف تناسبك.|Create your profile once to see which jobs suit you.
+الاسم الكامل|Full name
+تاريخ الميلاد|Date of birth
+الخبرات السابقة (إن وجدت)|Previous experience (if any)
+الشهادات والدبلومات (أرفقها إن وجدت)|Certificates and diplomas (attach if any)
+مرفق سابقاً:|Previously attached:
+إمكانية الالتحاق بالشركة عند التوافق|Availability to join the company if matched
+خلال أسبوع|Within a week
+خلال شهر|Within a month
+بعد إشعار مسبق (أكثر من شهر)|After prior notice (more than a month)
+رقم الهاتف|Phone number
+نوع العقد الذي تقبله|Contract type you accept
+نوع الوظيفة التي تبحث عنها|Type of job you are looking for
+احفظ ملفي|Save my profile
+العمر:|Age:
+اختر تاريخ ميلادك من التقويم|Pick your date of birth from the calendar
+تاريخ ميلاد يعطي عمراً بين 18 و 70 سنة|a date of birth giving an age between 18 and 70
+مهندس كهرباء صناعية|Industrial electrical engineer
+تقني صيانة كهرباء|Electrical maintenance technician
+سائق شاحنة ثقيلة|Heavy truck driver
+مسؤول HSE|HSE officer
+محاسب مشاريع|Project accountant
+شركة خدمات نفطية|Oilfield services company
+مؤسسة للأشغال الصناعية|Industrial works company
+شركة نقل|Transport company
+مقاول أشغال|Works contractor
+شركة لوجستية|Logistics company
+(مثال)|(example)
+تشغيل وصيانة اللوحات والمحطات الكهربائية في مواقع الحقول، مع إعداد تقارير الأعطال. يُفضَّل خبرة في PLC.|Operate and maintain electrical panels and stations at field sites, and prepare fault reports. PLC experience preferred.
+تركيب وصيانة تمديدات كهربائية، العمل بنظام المناوبات. لا تُشترط خبرة سابقة.|Install and maintain electrical wiring, shift-based work. No prior experience required.
+قيادة شاحنات ثقيلة على خط الوادي – ورقلة – حاسي مسعود برخصة سارية.|Drive heavy trucks on the El Oued – Ouargla – Hassi Messaoud route with a valid license.
+متابعة تطبيق إجراءات السلامة، وتقييم المخاطر، وإعداد تقارير الحوادث.|Follow up safety procedures, assess risks and prepare incident reports.
+متابعة الفواتير والمستحقات ومصاريف المواقع.|Track invoices, payables and site expenses.
+ أيام| days
+ يوماً| days
+ يوم| day
+ سنة| yrs
+ سنوات| years
+ ساعة| h
+ كم| km
+ دج| DZD
+مشروع –|Project –
+طلب –|Request –
+(رقم تجريبي)|(demo number)
+مشرف / مراقب أشغال|Site supervisor
+أملك شهادة سلامة HSE سارية|I hold a valid HSE safety certificate
+الوثائق المطلوبة (إلزامية)|Required documents (mandatory)
+أرفق كل وثيقة مع تاريخ انتهائها. يجب أن تبقى سارية 4 أشهر على الأقل، أي حتى|Attach each document with its expiry date. Each must stay valid for at least 4 months, i.e. until
+على الأقل.|at the earliest.
+،|,
+؛|;
+ وظيفة| jobs
+التخصص / تفاصيل مطلوبة (اختياري) مثل: كهرباء صناعية|Specialty / details (optional), e.g. industrial electrical
+مؤسسة الصحراء للنقل|Sahara Transport Est.
+النور للشاحنات|Al Nour Trucks
+أولاد سايح للنقل|Ouled Saih Transport
+الوادي للصهاريج|El Oued Tankers
+سوناريد الخدمات|Sonarid Services
+تيطراوي للآليات|Titraoui Machinery
+الأفق للأشغال|Al Ofok Works
+بن عمر للآليات|Ben Omar Machinery
+الجنوب للرفع|South Lifting
+رحاب لنقل العمال|Rehab Worker Transport
+واحة لتأجير السيارات|Oasis Car Rental
+ميكانيك الصحراء (سيارات)|Sahara Mechanics (cars)
+ميكانيك الصحراء (آليات وسيارات)|Sahara Mechanics (machines & cars)
+شاحنة نقل الأنابيب|Pipe-carrier truck
+شاحنة شفط وصرف (فاكيوم)|Vacuum truck (suction / sewage)
+شاحنة صهريج غاز|Gas tanker truck
+شاحنة نقل مواد خطرة|Hazmat transport truck
+شاحنة ورشة متنقلة|Mobile workshop truck
+شاحنة سيلو إسمنت سائب|Bulk cement silo truck
+شاحنة إطفاء|Fire truck
+فرادة أسفلت|Asphalt paver
+آلة دق الركائز|Pile driver
+آلة حفر أفقي (HDD)|Horizontal drilling machine (HDD)
+رافعة زاحفة|Crawler crane
+بيك أب دبل كابينة|Double-cab pickup
+سيارة أجرة / ليموزين|Taxi / limousine
+حافلة 4×4 لنقل العمال|4×4 worker bus
+ميني باص 14-16 مقعداً|Minibus (14–16 seats)
+ماكينة لحام|Welding machine
+خزان وقود متنقل|Mobile fuel tank
+مورد تجريبي – |Demo supplier – 
+(أ)|(A)
+(ب)|(B)
+سائقون الجنوب|South Drivers
+#شاحنات|Trucks
+#آليات الحفر والأشغال|Excavation & earthmoving
+#الرفع والمناولة|Lifting & handling
+#السيارات والمركبات الخفيفة|Cars & light vehicles
+#الحافلات ونقل الأفراد|Buses & passenger transport
+#معدات الموقع والخدمات|Site equipment & services
+مورد تجريبي|Demo supplier
+وثيقة الملكية أو الفاتورة|Ownership document or invoice
+شهادة الفحص التقني / المطابقة|Technical inspection / conformity certificate
+شهادة فحص أجهزة الرفع|Lifting equipment inspection certificate
+شاحنة مسطحة|Flatbed truck
+شاحنة صندوقية|Box truck
+شاحنة مبرّدة|Refrigerated truck
+شاحنة حاويات|Container truck
+رأس جرّار مع مقطورة|Tractor unit with trailer
+شاحنة نقل الآليات (لوبوي)|Lowbed equipment transporter
+شاحنة خلاطة إسمنت|Concrete mixer truck
+شاحنة صهريج مياه|Water tanker truck
+شاحنة صهريج وقود|Fuel tanker truck
+شاحنة رافعة (هيابّ)|Truck-mounted crane
+سيارة سحب وإنقاذ|Tow / recovery truck
+جرافة مصغّرة (بوبكات)|Skid-steer loader (Bobcat)
+جرافة|Bulldozer
+مسوّية (غريدر)|Grader
+حفارة زاحفة|Crawler excavator
+حفارة عجلات|Wheeled excavator
+حفّار بجرافة أمامية (JCB)|Backhoe loader (JCB)
+مدحلة ضاغطة|Road roller / compactor
+قلّاب مفصلي (دمبر)|Articulated dumper
+آلة حفر آبار / ثقب|Well drilling machine
+رافعة متنقلة|Mobile crane
+رافعة برجية|Tower crane
+رافعة شوكية|Forklift
+منصة رفع (سلّم هوائي)|Aerial work platform
+سيارة سياحية|Sedan car
+سيارة دفع رباعي 4×4|4×4 SUV
+بيك أب|Pickup truck
+فان / سيارة نفعية|Van / utility vehicle
+سيارة إسعاف مجهزة|Equipped ambulance
+ميني باص (حتى 30 مقعداً)|Minibus (up to 30 seats)
+حافلة كبيرة (45 مقعداً فأكثر)|Large coach (45+ seats)
+حافلة مكيّفة VIP|VIP air-conditioned bus
+مولّد كهربائي|Generator
+ضاغط هواء (كمبروسر)|Air compressor
+برج إنارة|Light tower
+مضخة (مياه / خرسانة)|Pump (water / concrete)
+كرافان / مسكن متنقل|Mobile cabin / camp unit
+تم نشر طلبك ✓|Your request is published ✓
+تم قبول العرض ✓|Offer accepted ✓
+تم حفظ ملفك ✓|Profile saved ✓
+تم نشر الوظيفة ✓|Job published ✓
+أهلاً بك،|Welcome,
+تقييمك|your rating
+تقييم|rating
+من: |From: `;
+var RX=[[/^تمت تغطية ([0-9]+) من ([0-9]+) بنود$/,"Covered $1 of $2 items"],[/^([0-9]+) مورد$/,"$1 suppliers"],[/^([0-9]+) وظيفة$/,"$1 jobs"]];
+function nd(s){return s.replace(/[\u064B-\u0652\u0670]/g,"")}
+DICT.split("\n").forEach(function(l){if(!l)return;var x=l.charAt(0)=="#",p=(x?l.slice(1):l).split("|"),a=nd(p[0]);if(x)XD[a]=p[1];else PL.push([a,p[1]])});
+PL.sort(function(a,b){return b[0].length-a[0].length});
+function trs(s){var e=trE(s);return LANG=="fr"&&e!=s?fr(e):e}
+function trE(s){var t=nd(s),k=t.trim(),i,ch=0;
+ if(k&&XD.hasOwnProperty(k))return t.replace(k,XD[k]);
+ for(i=0;i<RX.length;i++)if(RX[i][0].test(k))return t.replace(k,k.replace(RX[i][0],RX[i][1]));
+ PL.forEach(function(e){if(t.indexOf(e[0])>=0){t=t.split(e[0]).join(e[1]);ch=1}});
+ return ch?t:s}
+function wk(root){if(!document.createTreeWalker)return;
+ var w=document.createTreeWalker(root,4,{acceptNode:function(n){var p=n.parentNode.nodeName;return p=="SCRIPT"||p=="STYLE"||p=="TEXTAREA"?2:1}}),n,l=[];while(n=w.nextNode())l.push(n);
+ l.forEach(function(n){var r=NO.get(n),v=n.nodeValue;
+  if(r&&v==r.t){if(LANG=="ar"){n.nodeValue=r.o;NO.delete(n)}return}
+  if(LANG=="ar"||!/[^ ]/.test(v))return;
+  var t=trs(v);if(t!=v){NO.set(n,{o:v,t:t});n.nodeValue=t}});
+ [].forEach.call(root.querySelectorAll("[placeholder],optgroup"),function(e){var at=e.hasAttribute("placeholder")?"placeholder":"label",r=PO.get(e),v=e.getAttribute(at);if(v==null)return;
+  if(r&&v==r.t){if(LANG=="ar"){e.setAttribute(at,r.o);PO.delete(e)}return}
+  if(LANG=="ar")return;var t=trs(v);if(t!=v){PO.set(e,{o:v,t:t});e.setAttribute(at,t)}})}
+function applyLang(){var h=document.documentElement;h.lang=LANG;h.dir=LANG=="ar"?"rtl":"ltr";
+ ["ar","en","fr"].forEach(function(l){var b=document.getElementById("lg-"+l);if(b)b.className=l==LANG?"on":""});tday();draw();wk(document.body)}
+function setLang(l){LANG=l;ST.lang=l;save();applyLang()}
+if(window.MutationObserver)new MutationObserver(function(){wk(document.body)}).observe(document.body,{childList:true,subtree:true,characterData:true});
+var GR2=[["شاحنات",[0,1,12,13,14,15,16,17,18,19,20,21,22,49,50,51,52,53,54,55]],["آليات الحفر والأشغال",[2,3,23,24,25,26,27,28,29,30,31,56,57,58]],["الرفع والمناولة",[4,32,33,34,35,59]],["السيارات والمركبات الخفيفة",[7,36,37,38,39,40,60,61]],["الحافلات ونقل الأفراد",[5,41,42,43,62,63]],["معدات الموقع والخدمات",[44,45,46,47,48,64,65]]];
+function gopts(sel){return GR2.map(function(g){return'<optgroup label="'+g[0]+'">'+g[1].map(function(i){var x=TYPES[i];return'<option value="'+esc(x)+'"'+(x==sel?' selected':'')+'>'+x+'</option>'}).join("")+'</optgroup>'}).join("")}
+function gsel(){return'<select onchange="F.t=this.value;draw()"><option value="">الكل</option>'+gopts(F.t)+'</select>'}
+[[12,1,4.5,17000],[17,0,4.7,60000],[18,1,4.4,30000],[19,2,4.3,15000],[23,0,4.6,50000],[24,1,4.5,48000],[25,1,4.6,47000],[29,0,4.4,36000],[32,0,4.7,70000],[34,1,4.5,14000],[37,1,4.8,12000],[38,2,4.2,9000],[41,0,4.5,18000],[42,1,4.6,28000],[44,0,4.4,11000]].forEach(function(x,i){S0.push({n:"مورد تجريبي – "+TYPES[x[0]],t:TYPES[x[0]],c:CITIES[x[1]],r:x[2],p:x[3],d:140+i*9,y:3+i%7,dr:i%2,hse:i%3!=2,j:5+i*2,m:"بيانات تجريبية"})});
+var FRD=`#Home|Accueil
+#Request|Demande
+#My requests|Mes demandes
+#Resources|Ressources
+#Register|Enregistrer
+#My account|Mon compte
+#Jobs|Emplois
+#Project|Projet
+#All|Tous
+#Available|Disponible
+#Booked|Réservé
+#Digit|Chiffre
+#Male|Homme
+#Female|Femme
+#Other|Autre
+#Engineer|Ingénieur
+#Log in|Se connecter
+#Paid|Payé
+#Send|Envoyer
+#Open|Ouvrir
+#Details|Détails
+#Hide|Masquer
+#Update|Actualiser
+#Delete|Supprimer
+#Immediately|Immédiatement
+#Compare|Comparer
+#Analyze|Analyser
+#City|Ville
+#Sort|Trier
+#Quantity|Quantité
+#Operation|Exploitation
+#No spaces|Sans espaces
+#Gender|Sexe
+#Age|Âge
+#Replies|Réponses
+#Trucks|Camions
+#Excavation & earthmoving|Terrassement et travaux
+#Lifting & handling|Levage et manutention
+#Cars & light vehicles|Voitures et véhicules légers
+#Buses & passenger transport|Bus et transport de personnes
+#Site equipment & services|Équipements et services de chantier
+Demo only: suppliers and prices are fictional, not real offers. Data is stored in your browser only.|Démo uniquement : les fournisseurs et les prix sont fictifs, ce ne sont pas de vraies offres. Les données sont stockées uniquement dans votre navigateur.
+This app was created by Oussama Henka|Cette application a été créée par Oussama Henka
+Log out|Se déconnecter
+Today:|Aujourd'hui :
+Dump truck|Camion benne
+Tanker truck|Camion-citerne
+Excavator|Pelleteuse
+Loader|Chargeuse
+Crane|Grue
+Worker bus|Bus de personnel
+Driver / operator|Chauffeur / opérateur
+Car / light vehicle|Voiture / véhicule léger
+Specialist technician|Technicien spécialisé
+HSE officer|Responsable HSE
+Site supervisor|Superviseur de chantier
+Technician|Technicien
+Admin / accountant|Administratif / comptable
+Any type|Tout type
+Permanent|CDI
+Fixed-term contract|CDD
+Short assignment|Mission courte
+Company / Contractor|Entreprise / Entrepreneur
+Equipment / transport supplier|Fournisseur d'équipements / transport
+Job seeker|Demandeur d'emploi
+Other organization|Autre organisation
+Welcome to|Bienvenue sur
+Create an account or log in to enter the app.|Créez un compte ou connectez-vous pour accéder à l'application.
+Create account|Créer un compte
+Who are you? Choose your account type|Qui êtes-vous ? Choisissez votre type de compte
+Name (company or full name)|Nom (entreprise ou nom complet)
+Email or phone number|E-mail ou numéro de téléphone
+Confirm password|Confirmer le mot de passe
+Password:|Mot de passe :
+Password|Mot de passe
+Demo: accounts are stored in your browser only. In the real platform, accounts and passwords are managed on a secure server.|Démo : les comptes sont stockés uniquement dans votre navigateur. Sur la vraie plateforme, ils sont gérés sur un serveur sécurisé.
+8+ characters|8 caractères et plus
+Uppercase (A-Z)|Majuscule (A-Z)
+Lowercase (a-z)|Minuscule (a-z)
+Symbol like ! @ #|Symbole comme ! @ #
+Latin letters only|Lettres latines uniquement
+Strong password|Mot de passe fort
+Complete:|À compléter :
+account type|type de compte
+a valid email or phone number|un e-mail ou numéro valide
+at least 8 characters|au moins 8 caractères
+no spaces|sans espaces
+at least one uppercase letter (A-Z)|au moins une majuscule (A-Z)
+at least one lowercase letter (a-z)|au moins une minuscule (a-z)
+at least one digit|au moins un chiffre
+at least one symbol such as ! @ # $|au moins un symbole comme ! @ # $
+Latin letters, digits and symbols only|lettres latines, chiffres et symboles uniquement
+passwords do not match|les mots de passe ne correspondent pas
+this email/phone is already registered|cet e-mail / téléphone est déjà enregistré
+Incorrect login details.|Identifiants incorrects.
+Requests & projects|Demandes et projets
+Items covered|Lignes couvertes
+Accepted offers value|Valeur des offres acceptées
+Ready-to-mobilize suppliers|Fournisseurs prêts à mobiliser
+Payments pending|Paiements en attente
+How does the platform work?|Comment fonctionne la plateforme ?
+Post a request (or a multi-resource project) → get offers ranked by proximity, verification and rating → accept an offer → contact the supplier → rate after completion.|Publiez une demande (ou un projet multi-ressources) → recevez des offres classées par proximité, vérification et note → acceptez une offre → contactez le fournisseur → notez après réalisation.
+Reset demo|Réinitialiser la démo
+Request quickly|Demandez rapidement
+Pick a ready template or describe your request in your own words:|Choisissez un modèle prêt ou décrivez votre demande avec vos mots :
+10 trucks – 1 week|10 camions – 1 semaine
+2 excavators – 10 days|2 pelleteuses – 10 jours
+Crane – 3 days|Grue – 3 jours
+2 worker buses – 1 month|2 bus de personnel – 1 mois
+Full project|Projet complet
+↻ Repeat last request|↻ Répéter la dernière demande
+e.g. I need 3 excavators and 5 dump trucks in Ouargla for 2 weeks|ex. Il me faut 3 pelleteuses et 5 camions bennes à Ouargla pour 2 semaines
+Understood:|Compris :
+Review, then publish.|Vérifiez, puis publiez.
+Required supplier|Fournisseur requis
++ Add another supplier (multi-resource project)|+ Ajouter un autre fournisseur (projet multi-ressources)
+Duration (days)|Durée (jours)
+Work location|Lieu de travail
+Urgent request (within 24 h, 20% surcharge)|Demande urgente (sous 24 h, supplément de 20 %)
+Only suppliers that provide a driver/operator|Uniquement les fournisseurs avec chauffeur / opérateur
+Request as|Demander en tant que
+Company / service requester|Entreprise / demandeur de service
+If you are a supplier who needs a driver, machine or car from other suppliers, choose your name here.|Si vous êtes fournisseur et avez besoin d'un chauffeur, d'un engin ou d'une voiture auprès d'autres fournisseurs, choisissez votre nom ici.
+Publish & receive offers|Publier et recevoir des offres
+No requests yet. Post your first one from the “Request” tab.|Aucune demande pour le moment. Publiez la première depuis l'onglet « Demande ».
+From:|De :
+★ Best for you|★ Le meilleur pour vous
+Lowest price|Prix le plus bas
+★ Favorite|★ Favori
+Ready to mobilize|Prêt à mobiliser
+Documents expiring soon|Documents bientôt expirés
+Joining:|Prise de poste :
+Accept offer|Accepter l'offre
+Accepted ✓|Accepté ✓
+Accepted|Accepté
+Service order|Ordre de service
+Supplier contact:|Contact du fournisseur :
+Update status →|Mettre à jour le statut →
+Payment:|Paiement :
+Awaiting invoice|En attente de facture
+Invoice issued – due within 30 days|Facture émise – échéance 30 jours
+Paid ✓|Payé ✓
+Update payment|Mettre à jour le paiement
+On the way|En route
+In progress|En cours
+Completed|Terminé
+Expected arrival:|Arrivée prévue :
+After completion, rate the supplier:|Après réalisation, notez le fournisseur :
+Mark completed|Marquer terminé
+Service completed, your rating:|Service terminé, votre note :
+Share on WhatsApp|Partager sur WhatsApp
+Copy|Copier
+Print / PDF|Imprimer / PDF
+Close|Fermer
+💬 Chat with supplier|💬 Discuter avec le fournisseur
+💬 Chat with requester|💬 Discuter avec le demandeur
+💬 Message supplier|💬 Écrire au fournisseur
+No supplier is currently available for this type.|Aucun fournisseur disponible pour ce type actuellement.
+Top rated|Les mieux notés
+Ready to mobilize only|Prêts à mobiliser uniquement
+HSE safety certificate|Certificat de sécurité HSE
+Specifications|Spécifications
+Specialty & certificates|Spécialité et certificats
+Experience:|Expérience :
+Experience: |Expérience : 
+Completed jobs:|Travaux réalisés :
+Operation:|Exploitation :
+With driver/operator|Avec chauffeur / opérateur
+Without driver|Sans chauffeur
+Availability over 14 days (green available, red booked – demo data):|Disponibilité sur 14 jours (vert disponible, rouge réservé – données de démo) :
+Add to favorites|Ajouter aux favoris
+Remove from favorites|Retirer des favoris
+Toggle availability|Changer la disponibilité
+Delete job|Supprimer l'offre d'emploi
+Does not meet the 4-month rule – remaining |Ne respecte pas la règle des 4 mois – reste 
+does not meet the 4-month rule|ne respecte pas la règle des 4 mois
+Documents expired|Documents expirés
+Attached documents|Documents joints
+valid|valable
+Documents: 4 / 4 (demo data)|Documents : 4 / 4 (données de démo)
+No matching supplier.|Aucun fournisseur correspondant.
+Registration card|Carte grise
+Insurance|Assurance
+Technical inspection|Contrôle technique
+Transport / activity license|Licence de transport / d'activité
+Expiry date|Date d'expiration
+Cannot register:|Inscription impossible :
+Attach:|Joindre :
+expires in|expire dans
+days only; at least 120 days (4 months) required|jours seulement ; au moins 120 jours (4 mois) requis
+Register as an equipment / transport supplier|S'inscrire comme fournisseur d'équipements / transport
+To look for a job, open the “Jobs” tab then “My profile”.|Pour chercher un emploi, ouvrez l'onglet « Emplois » puis « Mon profil ».
+Add your truck or machine to receive requests.|Ajoutez votre camion ou engin pour recevoir des demandes.
+Supplier / company name|Nom du fournisseur / de l'entreprise
+Daily price (DZD)|Prix journalier (DZD)
+Model / capacity / specs|Modèle / capacité / caractéristiques
+Years of experience|Années d'expérience
+Phone number (shown to the company only after the offer is accepted)|Numéro de téléphone (visible par l'entreprise seulement après acceptation de l'offre)
+I hold a valid HSE safety certificate|Je détiens un certificat de sécurité HSE valable
+Your account (supplier or talent)|Votre compte (fournisseur ou talent)
+Your documents are valid ✓|Vos documents sont valables ✓
+I'm available now ✓ – tap to become unavailable|Je suis disponible ✓ – touchez pour devenir indisponible
+I'm booked now – tap to become available|Je suis réservé – touchez pour redevenir disponible
++ I need a driver, machine or car|+ J'ai besoin d'un chauffeur, d'un engin ou d'une voiture
+New request:|Nouvelle demande :
+WhatsApp notification:|Notification WhatsApp :
+Submit my offer at my price|Soumettre mon offre à mon prix
+You submitted your offer ✓|Vous avez soumis votre offre ✓
+No open requests for your type right now. Post one from the “Request” tab to see it here.|Aucune demande ouverte pour votre type. Publiez-en une depuis l'onglet « Demande » pour la voir ici.
+Remaining on nearest document|Reste sur le document le plus proche
+less than 4 months|moins de 4 mois
+No chats yet. Open a chat from any offer or supplier profile (Message supplier).|Aucune conversation. Ouvrez un chat depuis une offre ou un profil fournisseur (Écrire au fournisseur).
+General chat|Discussion générale
+About a request|À propos d'une demande
+← Chats|← Conversations
+About:|À propos :
+Start with a quick question below or type your message.|Commencez par une question rapide ci-dessous ou écrivez votre message.
+What's your best price?|Quel est votre meilleur prix ?
+When can you be ready?|Quand pouvez-vous être prêts ?
+Are your documents valid?|Vos documents sont-ils valables ?
+Is a driver available?|Un chauffeur est-il disponible ?
+Type your message|Écrivez votre message
+Replies are automated demo replies to illustrate the idea.|Les réponses sont des réponses automatiques de démonstration pour illustrer l'idée.
+The price is negotiable depending on duration and quantity – send me the details.|Le prix est négociable selon la durée et la quantité – envoyez-moi les détails.
+We can mobilize within 24 hours of confirmation.|Nous pouvons mobiliser sous 24 heures après confirmation.
+Our documents are valid; I'll send them after we agree.|Nos documents sont valables ; je vous les enverrai après accord.
+Yes, we provide an experienced driver or operator on request.|Oui, nous fournissons un chauffeur ou opérateur expérimenté sur demande.
+Thanks for your message – I'll reply with details soon.|Merci pour votre message – je vous répondrai bientôt avec les détails.
+Post a job|Publier une offre d'emploi
+My profile (job seeker)|Mon profil (demandeur d'emploi)
+Job type|Type d'emploi
+ – create your profile in “My profile” to see which jobs suit you| – créez votre profil dans « Mon profil » pour voir les offres qui vous conviennent
+Suits you ✓|Vous convient ✓
+Close to your profile|Proche de votre profil
+Doesn't suit you|Ne vous convient pas
+ years or more| ans ou plus
+No experience required|Aucune expérience requise
+Description & fit|Description et adéquation
+apply on the company website|postuler sur le site de l'entreprise
+Create your profile in “My profile” to see if this job suits you.|Créez votre profil dans « Mon profil » pour voir si cette offre vous convient.
+Specialty matches:|La spécialité correspond :
+differs from what you are looking for|diffère de ce que vous cherchez
+Your experience|Votre expérience
+years is enough (required|ans suffisent (requis
+Required experience|Expérience requise
+years and yours is|ans et la vôtre est de
+The job is in your city|L'emploi est dans votre ville
+The job is in|L'emploi est à
+and you are in|et vous êtes à
+Contract type accepted:|Type de contrat accepté :
+Offered contract|Contrat proposé
+is not the one you prefer|n'est pas celui que vous préférez
+For companies: list the job and required experience; candidates apply directly through your website.|Pour les entreprises : publiez l'emploi et l'expérience requise ; les candidats postulent directement via votre site.
+Company name|Nom de l'entreprise
+Job title|Intitulé du poste
+e.g. Industrial electrical engineer|ex. Ingénieur électricien industriel
+Required experience (years, 0 = none)|Expérience requise (années, 0 = aucune)
+Contract type|Type de contrat
+Job description, duties and qualifications|Description du poste, missions et qualifications
+job description|description du poste
+Company website or application page link (the Apply button goes here)|Lien du site de l'entreprise ou de la page de candidature (le bouton Apply y mène)
+Publish job|Publier l'offre
+a valid link starting with https://|un lien valide commençant par https://
+My job-seeker profile|Mon profil de demandeur d'emploi
+Create your profile once to see which jobs suit you.|Créez votre profil une fois pour voir quels emplois vous conviennent.
+Full name|Nom complet
+Date of birth|Date de naissance
+Previous experience (if any)|Expériences précédentes (le cas échéant)
+Certificates and diplomas (attach if any)|Certificats et diplômes (à joindre le cas échéant)
+Previously attached:|Déjà joint :
+Availability to join the company if matched|Disponibilité pour rejoindre l'entreprise en cas de correspondance
+Within a week|Sous une semaine
+Within a month|Sous un mois
+After prior notice (more than a month)|Après préavis (plus d'un mois)
+Phone number|Numéro de téléphone
+Contract type you accept|Type de contrat accepté
+Type of job you are looking for|Type d'emploi recherché
+Save my profile|Enregistrer mon profil
+Age:|Âge :
+Pick your date of birth from the calendar|Choisissez votre date de naissance dans le calendrier
+a date of birth giving an age between 18 and 70|une date de naissance donnant un âge entre 18 et 70 ans
+Industrial electrical engineer|Ingénieur électricien industriel
+Electrical maintenance technician|Technicien de maintenance électrique
+Heavy truck driver|Chauffeur poids lourd
+Project accountant|Comptable de projets
+Oilfield services company|Société de services pétroliers
+Industrial works company|Entreprise de travaux industriels
+Transport company|Société de transport
+Works contractor|Entrepreneur de travaux
+Logistics company|Société de logistique
+(example)|(exemple)
+Operate and maintain electrical panels and stations at field sites, and prepare fault reports. PLC experience preferred.|Exploiter et entretenir les tableaux et postes électriques sur les sites pétroliers et rédiger les rapports de pannes. Expérience PLC appréciée.
+Install and maintain electrical wiring, shift-based work. No prior experience required.|Installer et entretenir les installations électriques, travail en équipes. Aucune expérience préalable requise.
+Drive heavy trucks on the El Oued – Ouargla – Hassi Messaoud route with a valid license.|Conduire des poids lourds sur l'axe El Oued – Ouargla – Hassi Messaoud avec un permis valable.
+Follow up safety procedures, assess risks and prepare incident reports.|Suivre les procédures de sécurité, évaluer les risques et rédiger les rapports d'incidents.
+Track invoices, payables and site expenses.|Suivre les factures, les paiements dus et les dépenses de chantier.
+ days| jours
+ day| jour
+ yrs| ans
+ years| ans
+ jobs| emplois
+your rating|votre note
+rating|note
+Project –|Projet –
+Request –|Demande –
+(demo number)|(numéro de démo)
+Required documents (mandatory)|Documents requis (obligatoires)
+Attach each document with its expiry date. Each must stay valid for at least 4 months, i.e. until|Joignez chaque document avec sa date d'expiration. Chacun doit rester valable au moins 4 mois, soit jusqu'au
+at the earliest.|au plus tôt.
+Specialty / details (optional), e.g. industrial electrical|Spécialité / détails (facultatif), ex. électricité industrielle
+Sahara Transport Est.|Éts Sahara Transport
+Al Nour Trucks|Camions Al Nour
+Ouled Saih Transport|Transport Ouled Saih
+El Oued Tankers|Citernes El Oued
+Sonarid Services|Services Sonarid
+Titraoui Machinery|Engins Titraoui
+Al Ofok Works|Travaux Al Ofok
+Ben Omar Machinery|Engins Ben Omar
+South Lifting|Levage du Sud
+Rehab Worker Transport|Transport de personnel Rehab
+Oasis Car Rental|Location de voitures Oasis
+Sahara Mechanics (cars)|Mécanique Sahara (voitures)
+Sahara Mechanics (machines & cars)|Mécanique Sahara (engins et voitures)
+South Drivers|Chauffeurs du Sud
+Pipe-carrier truck|Camion porte-tubes
+Vacuum truck (suction / sewage)|Camion hydrocureur (aspiration / vidange)
+Gas tanker truck|Camion-citerne à gaz
+Hazmat transport truck|Camion de matières dangereuses
+Mobile workshop truck|Camion atelier mobile
+Bulk cement silo truck|Camion silo ciment vrac
+Fire truck|Camion de pompiers
+Asphalt paver|Finisseur d'asphalte
+Pile driver|Sonnette de battage
+Horizontal drilling machine (HDD)|Foreuse horizontale (HDD)
+Crawler crane|Grue sur chenilles
+Double-cab pickup|Pick-up double cabine
+4×4 worker bus|Bus 4×4 de personnel
+Minibus (14–16 seats)|Minibus (14–16 places)
+Welding machine|Poste à souder
+Mobile fuel tank|Cuve à carburant mobile
+Demo supplier – |Fournisseur démo – 
+Demo supplier|Fournisseur démo
+Ownership document or invoice|Titre de propriété ou facture
+Technical inspection / conformity certificate|Certificat de contrôle technique / de conformité
+Lifting equipment inspection certificate|Certificat de contrôle des appareils de levage
+Flatbed truck|Camion plateau
+Box truck|Camion fourgon
+Refrigerated truck|Camion frigorifique
+Container truck|Camion porte-conteneurs
+Tractor unit with trailer|Tracteur avec remorque
+Lowbed equipment transporter|Porte-engins surbaissé
+Concrete mixer truck|Camion toupie béton
+Water tanker truck|Camion-citerne à eau
+Fuel tanker truck|Camion-citerne à carburant
+Truck-mounted crane|Camion grue
+Tow / recovery truck|Dépanneuse
+Skid-steer loader (Bobcat)|Chargeuse compacte (Bobcat)
+Grader|Niveleuse
+Crawler excavator|Pelleteuse sur chenilles
+Wheeled excavator|Pelleteuse sur pneus
+Backhoe loader (JCB)|Tractopelle (JCB)
+Road roller / compactor|Rouleau compresseur
+Articulated dumper|Tombereau articulé
+Well drilling machine|Foreuse de puits
+Mobile crane|Grue mobile
+Tower crane|Grue à tour
+Forklift|Chariot élévateur
+Aerial work platform|Nacelle élévatrice
+Sedan car|Berline
+4×4 SUV|SUV 4×4
+Pickup truck|Pick-up
+Van / utility vehicle|Fourgonnette / utilitaire
+Equipped ambulance|Ambulance équipée
+Minibus (up to 30 seats)|Minibus (jusqu'à 30 places)
+Large coach (45+ seats)|Grand autocar (45 places et +)
+VIP air-conditioned bus|Bus VIP climatisé
+Generator|Groupe électrogène
+Air compressor|Compresseur d'air
+Light tower|Tour d'éclairage
+Pump (water / concrete)|Pompe (eau / béton)
+Mobile cabin / camp unit|Cabine / base-vie mobile
+From: |De : 
+From:|De :
+Your request is published ✓|Votre demande est publiée ✓
+Offer accepted ✓|Offre acceptée ✓
+Profile saved ✓|Profil enregistré ✓
+Job published ✓|Offre d'emploi publiée ✓
+Welcome,|Bienvenue,`,FX={},FM={};
+FRD.split("\n").forEach(function(l){if(!l)return;var x=l.charAt(0)=="#",p=(x?l.slice(1):l).split("|");if(x)FX[p[0]]=p[1];else{var c=p[0].charAt(0);(FM[c]=FM[c]||[]).push([p[0],p[1]])}});
+for(var c0 in FM)FM[c0].sort(function(a,b){return b[0].length-a[0].length});
+function fr(e){var k=e.trim(),o="",i=0,j,L2,f;if(FX.hasOwnProperty(k))return e.replace(k,FX[k]);
+ while(i<e.length){f=0;L2=FM[e.charAt(i)];if(L2)for(j=0;j<L2.length;j++)if(e.substr(i,L2[j][0].length)==L2[j][0]){o+=L2[j][1];i+=L2[j][0].length;f=1;break}if(!f){o+=e.charAt(i);i++}}
+ return o}
+var LK="";
+function animV(){var k=cu()?cur+"-"+JT:"gate"+GM,v=document.getElementById("v");if(k==LK)return;LK=k;try{v.classList.remove("pg");void v.offsetWidth;v.classList.add("pg");if(cur==0&&cu())cnt()}catch(e){}}
+function cnt(){[].forEach.call(document.querySelectorAll(".k b"),function(b){var t=b.textContent,m=t.match(/[0-9][0-9,]*/);if(!m)return;var n=+m[0].replace(/,/g,"");if(!n)return;var t0=Date.now(),pre=t.slice(0,m.index),suf=t.slice(m.index+m[0].length);
+ (function st(){var p=Math.min(1,(Date.now()-t0)/800),x=Math.round(n*(1-Math.pow(1-p,3)));b.textContent=pre+x.toLocaleString("en-US")+suf;if(p<1)requestAnimationFrame(st)})()})}
+function toast(m){try{var d=document.createElement("div");d.className="tst";d.textContent=m;document.body.appendChild(d);setTimeout(function(){d.classList.add("out");setTimeout(function(){d.remove()},450)},2200)}catch(e){}}
+try{var sp=document.getElementById("sp");if(sp)setTimeout(function(){sp.classList.add("out");setTimeout(function(){sp.remove()},600)},1000)}catch(e){}
+document.getElementById("flag").innerHTML=flagSvg();applyLang();
+</script>
+<script>llLoadGeo().then(function(){try{draw()}catch(e){console.error(e)}});</script>
+</body>
+</html>
