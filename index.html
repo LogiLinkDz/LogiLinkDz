@@ -457,15 +457,18 @@ var GM=0,GR="",GE="",RL={company:"شركة / مقاول",supplier:"مورد مع
 var TABS={company:[0,1,2,3,6,7,8],supplier:[0,1,2,3,4,5,6,7,8],seeker:[7,8],other:[0,1,2,3,4,5,6,7,8]};
 function cu(){var id=ST.S;return(ST.U||[]).filter(function(u){return u.id==id})[0]||null}
 function JA(){var u=cu(),r=u&&u.role;return r=="seeker"?[0,2]:(r=="other"||!r?[0,1,2]:[0,1])}
+function authT(ar,en,fr){return LANG==="fr"?fr:LANG==="en"?en:ar}
 function gate(){
- var h='<div class="c" style="text-align:center"><b style="font-size:20px">مرحباً بك في LogiLink DZ</b><div class="mu">أنشئ حساباً أو سجّل الدخول للدخول إلى التطبيق.</div>'
- +'<div class="row" style="justify-content:flex-start;margin-top:10px">'+["إنشاء حساب","تسجيل الدخول"].map(function(n,i){return'<button class="ac" style="'+(i==GM?'background:var(--pr);color:#fff':'')+'" onclick="GM='+i+';GE=\'\';draw()">'+n+'</button>'}).join("")+'</div></div>';
- if(GM==0)h+='<div class="c"><label>من أنت؟ اختر نوع حسابك</label>'+Object.keys(RL).map(function(k){return'<label style="display:flex;gap:8px;align-items:center;margin:6px 0;color:var(--tx);font-size:15px"><input type="radio" name="grole" value="'+k+'" style="width:auto"'+(GR==k?' checked':'')+' onchange="GR=this.value">'+RL[k]+'</label>'}).join("")
-  +'<label>الاسم (اسم الشركة أو الاسم الكامل)</label><input id="gn"><label>البريد الإلكتروني (مطلوب لتأكيد الحساب)</label><input id="gi" type="email" autocomplete="email" dir="ltr">'+llLocationBox('signup')
-  +'<label>كلمة المرور</label><input id="gp" type="password" dir="ltr" onkeydown="return event.keyCode!=32" oninput="document.getElementById(\'gpw\').innerHTML=pwHint(this.value)"><div id="gpw" style="margin-top:6px">'+pwHint("")+'</div><label>تأكيد كلمة المرور</label><input id="gp2" type="password" dir="ltr" onkeydown="return event.keyCode!=32">'
-  +'<div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="gsign()">أنشئ الحساب</button></div>';
- else h+='<div class="c"><label>البريد الإلكتروني</label><input id="gi" type="email" autocomplete="email" dir="ltr"><label>كلمة المرور</label><input id="gp" type="password"><div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="glog()">دخول</button></div>';
- return h+'<div class="note">تُدار الحسابات عبر Supabase. يجب تأكيد البريد الإلكتروني قبل تسجيل الدخول. لا تشارك كلمة مرورك مع أي شخص.</div>'}
+ var h='<div class="c" style="text-align:center"><b style="font-size:20px">'+authT('مرحباً بك في LogiLink DZ','Welcome to LogiLink DZ','Bienvenue sur LogiLink DZ')+'</b><div class="mu">'+authT('أنشئ حساباً أو سجّل الدخول للدخول إلى التطبيق.','Create an account or log in to use the platform.','Créez un compte ou connectez-vous pour utiliser la plateforme.')+'</div>'
+ +'<div class="row" style="justify-content:flex-start;margin-top:10px">'+[authT('إنشاء حساب','Create account','Créer un compte'),authT('تسجيل الدخول','Log in','Se connecter')].map(function(n,i){return'<button class="ac" style="'+(i==GM?'background:var(--pr);color:#fff':'')+'" onclick="GM='+i+';GE=\'\';draw()">'+n+'</button>'}).join("")+'</div></div>';
+ var roleLabels={company:authT('شركة / مقاول','Company / contractor','Entreprise / entrepreneur'),supplier:authT('مورد معدات أو نقل','Equipment / transport supplier','Fournisseur d’équipements / transport'),seeker:authT('باحث عن عمل','Job seeker','Demandeur d’emploi'),other:authT('جهة أخرى','Other organization','Autre organisation')};
+ if(GM==0)h+='<div class="c"><label>'+authT('من أنت؟ اختر نوع حسابك','Choose your account type','Choisissez votre type de compte')+'</label>'+Object.keys(RL).map(function(k){return'<label style="display:flex;gap:8px;align-items:center;margin:6px 0;color:var(--tx);font-size:15px"><input type="radio" name="grole" value="'+k+'" style="width:auto"'+(GR==k?' checked':'')+' onchange="GR=this.value">'+roleLabels[k]+'</label>'}).join("")
+  +'<label>'+authT('الاسم (اسم الشركة أو الاسم الكامل)','Name (company or full name)','Nom (entreprise ou nom complet)')+'</label><input id="gn" autocomplete="name"><label>'+authT('البريد الإلكتروني (مطلوب لتأكيد الحساب)','Email address (required to confirm account)','Adresse e-mail (nécessaire pour confirmer le compte)')+'</label><input id="gi" type="email" autocomplete="email" dir="ltr">'+llLocationBox('signup')
+  +'<label>'+authT('كلمة المرور','Password','Mot de passe')+'</label><input id="gp" type="password" autocomplete="new-password" dir="ltr" onkeydown="return event.keyCode!=32" oninput="document.getElementById(\'gpw\').innerHTML=pwHint(this.value)"><div id="gpw" style="margin-top:6px">'+pwHint("")+'</div><label>'+authT('تأكيد كلمة المرور','Confirm password','Confirmer le mot de passe')+'</label><input id="gp2" type="password" autocomplete="new-password" dir="ltr" onkeydown="return event.keyCode!=32">'
+  +'<div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="gsign()">'+authT('أنشئ الحساب','Create account','Créer un compte')+'</button></div>';
+ else h+='<div class="c"><label>'+authT('البريد الإلكتروني','Email address','Adresse e-mail')+'</label><input id="gi" type="email" autocomplete="email" dir="ltr"><label>'+authT('كلمة المرور','Password','Mot de passe')+'</label><input id="gp" type="password" autocomplete="current-password" dir="ltr"><div id="gerr" class="mu" style="color:var(--bad);margin-top:6px">'+GE+'</div><button class="go" onclick="glog()">'+authT('دخول','Log in','Se connecter')+'</button></div>';
+ return h+'<div class="note">'+authT('تُدار الحسابات عبر Supabase. يجب تأكيد البريد الإلكتروني قبل تسجيل الدخول. لا تشارك كلمة مرورك مع أي شخص.','Accounts are managed by Supabase. Confirm your email before logging in. Never share your password.','Les comptes sont gérés par Supabase. Confirmez votre e-mail avant de vous connecter. Ne partagez jamais votre mot de passe.')+'</div>'}
+
 function hsh(p,s){var C=window.crypto;if(!(C&&C.subtle))return Promise.reject();
  return C.subtle.digest("SHA-256",new TextEncoder().encode(s+":"+p)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")})}
 function rnd(){var C=window.crypto;return C&&C.getRandomValues?Array.prototype.join.call(C.getRandomValues(new Uint32Array(3)),""):String(Math.random()).slice(2)}
@@ -492,15 +495,31 @@ async function gsign(){
  try{
   var dbRole=({company:"company",supplier:"supplier",seeker:"job_seeker",other:"organization"})[GR]||"organization";
   var data=await llAuthFetch("/auth/v1/signup",{email:email,password:p,data:{full_name:g("gn"),role:dbRole,preferred_language:LANG||"ar",wilaya_code:w,commune_code:c}});
-  if(data.user && data.session){llLocalUser(data.user,GR,g("gn"),email,w,c);localStorage.setItem("ll2_supabase_access_token",data.session.access_token);localStorage.setItem("ll2_supabase_refresh_token",data.session.refresh_token);land();return}
-  // Supabase may create the user/profile successfully but omit user details when email confirmation is enabled.
-  // Treat a successful HTTP response as a pending-confirmation signup instead of showing a false error.
-  ge.style.color="var(--ok)";ge.textContent="تم إنشاء الحساب أو تسجيله بنجاح. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع إلى LogiLink DZ وسجّل الدخول. إذا لم تجد الرسالة، افحص مجلد البريد غير المرغوب فيه (Spam).";
+  // The Supabase REST endpoint may return the user object directly (data.id),
+  // while some wrappers return { user, session }. Support both response shapes.
+  // Supabase may return the user directly (signup with email confirmation) or as {user, session}.
+  var authUser = data && (data.user || (data.id ? data : null));
+  var authSession = data && data.session ? data.session : null;
+  if (authUser && authSession && authSession.access_token && authSession.refresh_token) {
+    llLocalUser(authUser, GR, g("gn"), email, w, c);
+    localStorage.setItem("ll2_supabase_access_token", authSession.access_token);
+    localStorage.setItem("ll2_supabase_refresh_token", authSession.refresh_token);
+    land();
+    return;
+  }
+  // Supabase normally omits the session when email confirmation is required.
+  // The account/profile can still be created successfully in that case.
+  if (authUser) {
+    ge.style.color="var(--ok)";
+    ge.textContent=authT("تم إنشاء الحساب. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم سجّل الدخول.","Account created. Open your email, click the confirmation link, then log in.","Compte créé. Ouvrez votre e-mail, cliquez sur le lien de confirmation, puis connectez-vous.");
+  } else {
+    throw Error(authT("وصل رد غير متوقع من خدمة التسجيل. لا تعاود التسجيل الآن؛ تحقق من قائمة Users في Supabase.","Unexpected signup response. Do not register again yet; check Supabase Users.","Réponse inattendue lors de l’inscription. Ne réessayez pas tout de suite ; vérifiez les utilisateurs dans Supabase."));
+  }
  }catch(e){ge.style.color="var(--bad)";ge.textContent=llAuthError(e)}
 }
 async function glog(){
  var email=document.getElementById("gi").value.trim().toLowerCase(),p=document.getElementById("gp").value,ge=document.getElementById("gerr");
- if(!/^[^ @]+@[^ @]+[.][^ @]+$/.test(email)||!p){ge.textContent="أدخل البريد الإلكتروني وكلمة المرور.";return}
+ if(!/^[^ @]+@[^ @]+[.][^ @]+$/.test(email)||!p){ge.textContent=authT("أدخل البريد الإلكتروني وكلمة المرور.","Enter your email address and password.","Saisissez votre adresse e-mail et votre mot de passe.");return}
  ge.style.color="var(--warn)";ge.textContent="جارٍ تسجيل الدخول...";
  try{
   var data=await llAuthFetch("/auth/v1/token?grant_type=password",{email:email,password:p});
